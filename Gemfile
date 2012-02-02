@@ -1,4 +1,7 @@
-# A sample Gemfile
-source "https://rubygems.org"
+source :rubygems
 
-# gem "rails"
+gem 'serve', '1.5.1'
+
+gem 'compass'
+gem 'haml'
+
