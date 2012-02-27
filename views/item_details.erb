@@ -1,3 +1,7 @@
+<% load_example_item! %>
+
+
+
 <!DOCTYPE html>
 <!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
 <!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
@@ -20,12 +24,12 @@
 	<!-- CSS 
   	================================================== -->
 	<!-- Skeleton Stuff -->
-	<link rel="stylesheet" href="../public/stylesheets/base.css">
-	<link rel="stylesheet" href="../public/stylesheets/skeleton.css">
-	<link rel="stylesheet" href="../public/stylesheets/layout.css">
+	<link rel="stylesheet" href="stylesheets/base.css">
+	<link rel="stylesheet" href="stylesheets/skeleton.css">
+	<link rel="stylesheet" href="stylesheets/layout.css">
 	
 	<!-- WWQI -->
-	<link href="../public/stylesheets/style.css" media="screen" rel="stylesheet" type="text/css" />
+	<link href="stylesheets/style.css" media="screen" rel="stylesheet" type="text/css" />
 
 	
 	<!-- Favicons
@@ -130,6 +134,7 @@
             <div class="twelve columns">
               <h2><%= @item.title_en_with_date %></h2>
               <p class="description">
+                <% puts __ENCODING__ %>
                 <%= @item.description_en %>
               </p>
             </div>
@@ -170,7 +175,7 @@
 
 										<li>
 											<span>Collections:</span>
-                      <% @item.collections.each do |coll %>
+                      <% @item.collections.each do |coll| %>
                       <a href="<%= coll.link %>" class="tag" title="more"><%= coll.title_en %></a>
                       <% end %>
 										</li>
@@ -228,7 +233,7 @@
 										<li>
 											<span>Subjects</span>
                       <% @item.subjects.each do |subject| %>
-                        <a href="<%= subject.link_to_face %>" class="tag"><%= subject.name_en %></a>
+                        <a href="<%= subject.link_to_facet %>" class="tag"><%= subject.name_en %></a>
                       <% end %>
 										</li>
 
