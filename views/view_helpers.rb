@@ -37,54 +37,54 @@ On the last page of the text is written: "This book was received from Aqa Muslim
 The stamp of Muhammad Sadiq Tabataba'i appears on the last page of the text.
 NOTES
     @item.dimensions_en = "17.5cm x 22cm"
-    @item.collections = [OpenStruct.new(link: "#", title_en: "Majlis Library, Museum and Document Center")]
+    @item.collections = [OpenStruct.new(url: "#", title_en: "Majlis Library, Museum and Document Center")]
     @item.repository_en = "Majlis Library, Museum and Document Center, Tehran, Iran (MS. 1197-T)"
     @item.restrictions_en = "Use of collection materials for publication purposes must cite Majlis Library, Museum and Document Center (Tehran, Iran) as current repository."
     @item.created_at_en = "14 January 2011"
     @item.updated_at_en = "14 September 2011"
     @item.accession_number = "1018A10"
     @item.genres = [
-      OpenStruct.new(name_en: "manuscripts & lithographs", link_to_facet: "#")
+      OpenStruct.new(name_en: "manuscripts & lithographs", url_to_facet: "#")
     ]
     @item.people = [
-      OpenStruct.new(name_en: "Nasir al-Din Shah",link: "#"),
-      OpenStruct.new(name_en: "Ziya' al-Saltanah [I]",link: "#"),
-      OpenStruct.new(name_en: "Mayil Afshar Shaykh al-Shu'ara",link: "#"),
-      OpenStruct.new(name_en: "Aqa Vajih",link: "#"),
-      OpenStruct.new(name_en: "Fakhr al-Muluk",link: "#"),
-      OpenStruct.new(name_en: "'Ismat al-Dawlah",link: "#"),
-      OpenStruct.new(name_en: "Nazim al-Bika'",link: "#"),
-      OpenStruct.new(name_en: "Shaykh al-Islam",link: "#"),
-      OpenStruct.new(name_en: "I'timad al-Saltanah",link: "#"),
-      OpenStruct.new(name_en: "Atabak A'zam",link: "#"),
-      OpenStruct.new(name_en: "Imam Jum'ah",link: "#"),
-      OpenStruct.new(name_en: "Amin Aqdas",link: "#"),
-      OpenStruct.new(name_en: "Hajiyah Khanum",link: "#"),
-      OpenStruct.new(name_en: "'A'ishah Khanum",link: "#"),
-      OpenStruct.new(name_en: "'Iffat al-Saltanah",link: "#"),
-      OpenStruct.new(name_en: "Zaynab al-Saltanah",link: "#"),
-      OpenStruct.new(name_en: "Badr al-Saltanah",link: "#"),
-      OpenStruct.new(name_en: "Akhtar al-Saltanah",link: "#"),
-      OpenStruct.new(name_en: "Shams al-Dawlah",link: "#"),
-      OpenStruct.new(name_en: "Taj al-Dawlah",link: "#"),
-      OpenStruct.new(name_en: "Shukuh al-Saltanah [I]",link: "#"),
-      OpenStruct.new(name_en: "Inis al-Dawlah",link: "#"),
-      OpenStruct.new(name_en: "Tuman Aqa",link: "#"),
-      OpenStruct.new(name_en: "Turan Aqa",link: "#"),
-      OpenStruct.new(name_en: "Amin al-Saltanah",link: "#")
+      OpenStruct.new(name_en: "Nasir al-Din Shah", url: "#"),
+      OpenStruct.new(name_en: "Ziya' al-Saltanah [I]", url: "#"),
+      OpenStruct.new(name_en: "Mayil Afshar Shaykh al-Shu'ara", url: "#"),
+      OpenStruct.new(name_en: "Aqa Vajih", url: "#"),
+      OpenStruct.new(name_en: "Fakhr al-Muluk", url: "#"),
+      OpenStruct.new(name_en: "'Ismat al-Dawlah", url: "#"),
+      OpenStruct.new(name_en: "Nazim al-Bika'", url: "#"),
+      OpenStruct.new(name_en: "Shaykh al-Islam", url: "#"),
+      OpenStruct.new(name_en: "I'timad al-Saltanah", url: "#"),
+      OpenStruct.new(name_en: "Atabak A'zam", url: "#"),
+      OpenStruct.new(name_en: "Imam Jum'ah", url: "#"),
+      OpenStruct.new(name_en: "Amin Aqdas", url: "#"),
+      OpenStruct.new(name_en: "Hajiyah Khanum", url: "#"),
+      OpenStruct.new(name_en: "'A'ishah Khanum", url: "#"),
+      OpenStruct.new(name_en: "'Iffat al-Saltanah", url: "#"),
+      OpenStruct.new(name_en: "Zaynab al-Saltanah", url: "#"),
+      OpenStruct.new(name_en: "Badr al-Saltanah", url: "#"),
+      OpenStruct.new(name_en: "Akhtar al-Saltanah", url: "#"),
+      OpenStruct.new(name_en: "Shams al-Dawlah", url: "#"),
+      OpenStruct.new(name_en: "Taj al-Dawlah", url: "#"),
+      OpenStruct.new(name_en: "Shukuh al-Saltanah [I]", url: "#"),
+      OpenStruct.new(name_en: "Inis al-Dawlah", url: "#"),
+      OpenStruct.new(name_en: "Tuman Aqa", url: "#"),
+      OpenStruct.new(name_en: "Turan Aqa", url: "#"),
+      OpenStruct.new(name_en: "Amin al-Saltanah", url: "#")
     ]
 
     @item.subjects = [
-      OpenStruct.new(name_en: "food", link_to_facet: "#"),
-      OpenStruct.new(name_en: "satire", link_to_facet: "#"),
-      OpenStruct.new(name_en: "poetry", link_to_facet: "#"),
-      OpenStruct.new(name_en: "cookbooks", link_to_facet: "#"),
-      OpenStruct.new(name_en: "cooking", link_to_facet: "#"),
-      OpenStruct.new(name_en: "courtiers", link_to_facet: "#")
+      OpenStruct.new(name_en: "food", url_to_facet: "#"),
+      OpenStruct.new(name_en: "satire", url_to_facet: "#"),
+      OpenStruct.new(name_en: "poetry", url_to_facet: "#"),
+      OpenStruct.new(name_en: "cookbooks", url_to_facet: "#"),
+      OpenStruct.new(name_en: "cooking", url_to_facet: "#"),
+      OpenStruct.new(name_en: "courtiers", url_to_facet: "#")
     ]
 
     @item.places = [
-      OpenStruct.new(name_en: "Bushihr", link: "#")
+      OpenStruct.new(name_en: "Bushihr", url: "#")
     ]
   end
   
