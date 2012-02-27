@@ -1,3 +1,6 @@
+<% load_example_item! unless $GENERATE # prevent loading the example if we're generating the static pages %>
+
+
 <!DOCTYPE html>
 <!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
 <!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
@@ -20,12 +23,12 @@
 	<!-- CSS 
   	================================================== -->
 	<!-- Skeleton Stuff -->
-	<link rel="stylesheet" href="../public/stylesheets/base.css">
-	<link rel="stylesheet" href="../public/stylesheets/skeleton.css">
-	<link rel="stylesheet" href="../public/stylesheets/layout.css">
+	<link rel="stylesheet" href="stylesheets/base.css">
+	<link rel="stylesheet" href="stylesheets/skeleton.css">
+	<link rel="stylesheet" href="stylesheets/layout.css">
 	
 	<!-- WWQI -->
-	<link href="../public/stylesheets/style.css" media="screen" rel="stylesheet" type="text/css" />
+	<link href="stylesheets/style.css" media="screen" rel="stylesheet" type="text/css" />
 
 	
 	<!-- Favicons
@@ -101,6 +104,10 @@
             <a rel="shadowbox[email];width=450px;height=420px;" title="Email Citation" href="#email-popup" class="left"><img class="icon" src="../public/images/ico_email.gif">  Email Citation</a>
             <a href="/archive/detail/1527/remember" class="left"><img class="icon" src="../public/images/ico_add.gif">  Add to My Selections</a>
 
+            <!-- TODO: Implement subcollections 
+
+            This depends on some modeling which doesn't exist yet.
+
             <div class="sortnav paginate">
               <div class="pagination">
                 <a href="/archive/browser?genre_filter[]=208">Back To Results</a>
@@ -109,21 +116,25 @@
                 <a href="/archive/detail/1520"> » Next Item</a>
               </div>
             </div>
+
+            -->
+
           </div>
           <!-- end pagination bar -->
 
           <div class="item-essentials clearfix">
             <div class="four columns item-thumbnail">
-              <span class="image-count">24 images</span>
-              <img src="http://d19ob2c2hogwg9.cloudfront.net/thumbs/it_1527.jpg" alt="Anthology of Food, [ca. 1873 or 1874]">
-              <a href="http://d19ob2c2hogwg9.cloudfront.net/slides/it_1527_1.jpg" rel="shadowbox[gallery]" title="Anthology of Food, [ca. 1865]" class="redButton inline-block">View This Item</a>
+              <!-- TODO: Implement subcollections 
+                <span class="image-count">24 images</span>
+              -->
+              <img src="<%= @item.thumbnail %>" alt="<%= @item.title_en_with_date %>">
+              <a href="<%= @item.harvard_link %>" rel="shadowbox[gallery]" title="Anthology of Food, [ca. 1865]" class="redButton inline-block">View This Item</a>
             </div>
             <div class="twelve columns">
-              <h2>Anthology of Food, [ca. 1873 or 1874]</h2>
+              <h2><%= @item.title_en_with_date %></h2>
               <p class="description">
-                
-                A satirical anthology of poetry that uses Iranian foods to make fun of government elites, both men and women, including: Nasir al-Din Shah, Muzaffar al-Din Shah (Vali ʻAhd), Aqa Vajih, Fakhr al-Muluk, Ziyaʼ al-Saltanah, ʻIsmat al-Dawlah, Amin al-Saltanah, Turan Aqa, Tuman Aqa, Inis al-Dawlah, Shukuh al-Saltanah, Taj al-Dawlah, Shams al-Dawlah, Akhtar al-Saltanah, Badr al-Saltanah, Zaynab al-Saltanah, ʻIffat al-Saltanah, ʻAʼishah Khanum, Hajiyah Khanum, Amin Aqdas, Imam Jumʻah, Atabak Aʻzam, Iʻtimad al-Saltanah, Shaykh al-Islam, Nazim al-Bikaʼ. 
-                The writer, Mayil Afshar, received the titles Shaykh al-Shuʻara and Amin Tazkarah.
+                <% puts __ENCODING__ %>
+                <%= @item.description_en %>
               </p>
             </div>
           </div>
@@ -137,59 +148,58 @@
 									<h2>Item Details</h2>
 									<ul>
 
-										<li class="description">
-											<span>Creator:</span>
-											Mayil Afshar Shaykh al-Shuʻara
-										</li>
+                    <% if @item.has_creator? %>
+                      <li class="description">
+                        <span>Creator:</span>
+                        <%= @item.creator.name_en %>
+                      </li>
+                    <% end %>
 
 
 										<li class="description">
 											<span>Date:</span>
-											[ca. 1873 or 1874 (1290 AH)]
+                      <%= @item.date.representation_en %>
 										</li>
 
 										<li>
 											<span>Notes:</span>
-											The date of the text must be after the formation of the consultative body in 1275 AH or 1289 AH (the text refers to the chairman of the consultative assembly) and before 1297 AH (when it was entered in the library).
-											On the last page of the text is written: "This book was received from Aqa Muslim [?] [on] 1297 AH and entered in my library in the month of Muharram 1298 AH."
-											The stamp of Muhammad Sadiq Tabatabaʼi appears on the last page of the text.
+                      <%= @item.notes_en %>
 										</li>
 
 
 										<li>
 											<span>Dimensions:</span>
-											17.5 x 22 cm
+                      <%= @item.dimensions_en %>
 										</li>
 
 										<li>
-											<span>Collection:</span>
-											<a href="/archive/browser?collection_filter=19" class="tag" title="more">Majlis Library, Museum and Document Center</a>
+											<span>Collections:</span>
+                      <% @item.collections.each do |coll| %>
+                      <a href="<%= coll.link %>" class="tag" title="more"><%= coll.title_en %></a>
+                      <% end %>
 										</li>
 
 										<li>
 											<span>Repository:</span>
-											Majlis Library, Museum and Document Center, Tehran, Iran (MS. 1197-T)
+                      <%= @item.repository_en %>
 										</li>
 
 										<li>
 											<span>Restrictions:</span>
-											Use of collection materials for publication purposes must cite Majlis Library, Museum and Document Center (Tehran, Iran) as current repository.
+                      <%= @item.restrictions_en %>
 										</li>
 
 										<li>
 											<span>Accessed:</span>
-											14 January 2011
+                      <%= @item.created_at_en %>
 										</li>
 										<li>
 											<span>Last Edited:</span>
-											14 September 2011
+                      <%= @item.updated_at_en %>
 										</li>
 
 										<li>	
-											<span>	Record no.:</span> 1018A10		
-										</li>
-										<li>
-											<span>Digital id: </span> 1527
+                      <span>Record no.:</span> <%= @item.accession_number %>		
 										</li>
 
 										<li class="clear">
@@ -207,51 +217,30 @@
 										</li>
 										<li>
 											<span class="block">Genres</span>
-											<a href="/archive/browser?exclusive=true&amp;genre_filter=208" class="tag">manuscripts &amp; lithographs</a>
+                      <% @item.genres.each do |genre| %>
+                        <a href="<%= genre.link_to_facet %>" class="tag"><%= genre.name_en %></a>
+                      <% end %>
 										</li>
 
 										<li>
 											<span>People</span>
-											<a href="/archive/browser?exclusive=true&amp;person_filter=169" class="tag">Nasir al-Din Shah</a>
-											<a href="/archive/browser?exclusive=true&amp;person_filter=337" class="tag">Ziyaʼ al-Saltanah [I]</a>
-											<a href="/archive/browser?exclusive=true&amp;person_filter=461" class="tag">Mayil Afshar Shaykh al-Shuʻara</a>
-											<a href="/archive/browser?exclusive=true&amp;person_filter=462" class="tag">Aqa Vajih</a>
-											<a href="/archive/browser?exclusive=true&amp;person_filter=463" class="tag">Fakhr al-Muluk</a>
-											<a href="/archive/browser?exclusive=true&amp;person_filter=464" class="tag">ʻIsmat al-Dawlah</a>
-											<a href="/archive/browser?exclusive=true&amp;person_filter=476" class="tag">Nazim al-Bikaʼ</a>
-											<a href="/archive/browser?exclusive=true&amp;person_filter=477" class="tag">Shaykh al-Islam</a>
-											<a href="/archive/browser?exclusive=true&amp;person_filter=478" class="tag">Iʻtimad al-Saltanah</a>
-											<a href="/archive/browser?exclusive=true&amp;person_filter=479" class="tag">Atabak Aʻzam</a>
-											<a href="/archive/browser?exclusive=true&amp;person_filter=480" class="tag">Imam Jumʻah</a>
-											<a href="/archive/browser?exclusive=true&amp;person_filter=481" class="tag">Amin Aqdas</a>
-											<a href="/archive/browser?exclusive=true&amp;person_filter=482" class="tag">Hajiyah Khanum</a>
-											<a href="/archive/browser?exclusive=true&amp;person_filter=483" class="tag">ʻAʼishah Khanum</a>
-											<a href="/archive/browser?exclusive=true&amp;person_filter=484" class="tag">ʻIffat al-Saltanah</a>
-											<a href="/archive/browser?exclusive=true&amp;person_filter=485" class="tag">Zaynab al-Saltanah</a>
-											<a href="/archive/browser?exclusive=true&amp;person_filter=486" class="tag">Badr al-Saltanah</a>
-											<a href="/archive/browser?exclusive=true&amp;person_filter=487" class="tag">Akhtar al-Saltanah</a>
-											<a href="/archive/browser?exclusive=true&amp;person_filter=488" class="tag">Shams al-Dawlah</a>
-											<a href="/archive/browser?exclusive=true&amp;person_filter=489" class="tag">Taj al-Dawlah</a>
-											<a href="/archive/browser?exclusive=true&amp;person_filter=490" class="tag">Shukuh al-Saltanah [I]</a>
-											<a href="/archive/browser?exclusive=true&amp;person_filter=491" class="tag">Inis al-Dawlah</a>
-											<a href="/archive/browser?exclusive=true&amp;person_filter=492" class="tag">Tuman Aqa</a>
-											<a href="/archive/browser?exclusive=true&amp;person_filter=493" class="tag">Turan Aqa</a>
-											<a href="/archive/browser?exclusive=true&amp;person_filter=494" class="tag">Amin al-Saltanah</a>
+                      <% @item.people.each do |person| %>
+                        <a href="<%= person.link %>" class="tag"><%= person.name_en %></a>
+                      <% end %>
 										</li>
 
 										<li>
 											<span>Subjects</span>
-											<a href="/archive/browser?exclusive=true&amp;subject_filter=294" class="tag">food</a>
-											<a href="/archive/browser?exclusive=true&amp;subject_filter=407" class="tag">satire</a>
-											<a href="/archive/browser?exclusive=true&amp;subject_filter=375" class="tag">poetry</a>
-											<a href="/archive/browser?exclusive=true&amp;subject_filter=268" class="tag">cookbooks</a>
-											<a href="/archive/browser?exclusive=true&amp;subject_filter=269" class="tag">cooking</a>
-											<a href="/archive/browser?exclusive=true&amp;subject_filter=630" class="tag">courtiers</a>
+                      <% @item.subjects.each do |subject| %>
+                        <a href="<%= subject.link_to_facet %>" class="tag"><%= subject.name_en %></a>
+                      <% end %>
 										</li>
 
 										<li>
 											<span>Places</span>
-											<a href="/archive/browser?exclusive=true&amp;place_filter=49" class="tag">Bushihr</a>
+                      <% @item.places.each do |place| %>
+                        <a href="<%= place.link %>" class="tag"><%= place.name_en %></a>
+                      <% end %>
 										</li>
 									</ul>
 								</div>
@@ -259,6 +248,7 @@
 							</div>
 						</div>
 					</div>
+
 					<div id="print-popup" style="display:none;">
 						<div id="print-popup-content" style="padding:20px;color:#fff;">
 							<h2>Print</h2>
@@ -287,6 +277,7 @@
 							</form>
 						</div>
 					</div>
+
 					<div id="email-confirmation-popup" style="display:none;">
 						<div id="email-popup-content" style="padding:20px;color:#fff;">
 							<h2>Send Citation(s) By Email</h2>
@@ -295,8 +286,6 @@
 									<p>Your citations were emailed on <br>21 February 2012</p>
 								</div>
 							</span>
-
-
 						</div>
 					</div>
 
@@ -333,6 +322,7 @@
 						</div>
 					</div>
 
+          <!-- XXX: I think the zoomify stuff is going away, this might not be needed -->
 					<div id="zoomify-popup" style="display:none;">
 						<div id="zoomify-replacement-wrapper">
 							<span>
