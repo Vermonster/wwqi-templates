@@ -88,5 +88,9 @@ NOTES
     ]
   end
   
+  def stylesheet(name, opts = {})
+    extra = opts.inject("") { |a,(key, value)| a << "#{key}=\"#{value}\" " } if opts.keys.any?
+    %Q|<link rel="stylesheet" href="/stylesheets/#{name}.css" #{extra} />|
+  end
   
 end

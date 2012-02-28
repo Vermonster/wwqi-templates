@@ -1,4 +1,6 @@
+<%# encoding: utf-8 %>
 <% load_example_item! unless $GENERATE # prevent loading the example if we're generating the static pages %>
+
 
 
 <!DOCTYPE html>
@@ -23,12 +25,12 @@
 	<!-- CSS 
   	================================================== -->
 	<!-- Skeleton Stuff -->
-	<link rel="stylesheet" href="stylesheets/base.css">
-	<link rel="stylesheet" href="stylesheets/skeleton.css">
-	<link rel="stylesheet" href="stylesheets/layout.css">
+  <%= stylesheet "base"     %>
+	<%= stylesheet "skeleton" %>
+	<%= stylesheet "layout"   %>
 	
 	<!-- WWQI -->
-	<link href="stylesheets/style.css" media="screen" rel="stylesheet" type="text/css" />
+  <%= stylesheet "style", media: "screen", type: "text/css" %> 
 
 	
 	<!-- Favicons
@@ -72,9 +74,6 @@
 		<div id="content">
 			<div class="container clearfix">
 				<!-- rails template content -->
-
-
-				
 
 				<div class="archiveBigWrapper clearfix item-details" id="item_details">
 
@@ -124,9 +123,11 @@
 
           <div class="item-essentials clearfix">
             <div class="four columns item-thumbnail">
+
               <!-- TODO: Implement subcollections 
                 <span class="image-count">24 images</span>
               -->
+
               <img src="<%= @item.thumbnail %>" alt="<%= @item.title_en_with_date %>">
               <a href="<%= @item.harvard_link %>" rel="shadowbox[gallery]" title="Anthology of Food, [ca. 1865]" class="redButton inline-block">View This Item</a>
             </div>
@@ -157,7 +158,7 @@
 
 										<li class="description">
 											<span>Date:</span>
-                      <%= @item.date.representation_en %>
+                      <%= @item.date.try(:representation_en) || "Undated" %>
 										</li>
 
 										<li>
