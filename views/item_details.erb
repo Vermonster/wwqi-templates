@@ -1,4 +1,6 @@
+<%# encoding: utf-8 %>
 <% load_example_item! unless $GENERATE # prevent loading the example if we're generating the static pages %>
+
 
 
 <!DOCTYPE html>
@@ -23,12 +25,12 @@
 	<!-- CSS 
   	================================================== -->
 	<!-- Skeleton Stuff -->
-	<link rel="stylesheet" href="stylesheets/base.css">
-	<link rel="stylesheet" href="stylesheets/skeleton.css">
-	<link rel="stylesheet" href="stylesheets/layout.css">
+  <%= stylesheet "base"     %>
+	<%= stylesheet "skeleton" %>
+	<%= stylesheet "layout"   %>
 	
 	<!-- WWQI -->
-	<link href="stylesheets/style.css" media="screen" rel="stylesheet" type="text/css" />
+  <%= stylesheet "style", media: "screen", type: "text/css" %> 
 
 	
 	<!-- Favicons
@@ -72,9 +74,6 @@
 		<div id="content">
 			<div class="container clearfix">
 				<!-- rails template content -->
-
-
-				
 
 				<div class="archiveBigWrapper clearfix item-details" id="item_details">
 
@@ -124,16 +123,17 @@
 
           <div class="item-essentials clearfix">
             <div class="four columns item-thumbnail">
+
               <!-- TODO: Implement subcollections 
                 <span class="image-count">24 images</span>
               -->
+
               <img src="<%= @item.thumbnail %>" alt="<%= @item.title_en_with_date %>">
               <a href="<%= @item.harvard_link %>" rel="shadowbox[gallery]" title="Anthology of Food, [ca. 1865]" class="redButton inline-block">View This Item</a>
             </div>
             <div class="twelve columns">
               <h2><%= @item.title_en_with_date %></h2>
               <p class="description">
-                <% puts __ENCODING__ %>
                 <%= @item.description_en %>
               </p>
             </div>
@@ -158,7 +158,7 @@
 
 										<li class="description">
 											<span>Date:</span>
-                      <%= @item.date.representation_en %>
+                      <%= @item.date.try(:representation_en) || "Undated" %>
 										</li>
 
 										<li>
@@ -175,19 +175,21 @@
 										<li>
 											<span>Collections:</span>
                       <% @item.collections.each do |coll| %>
-                      <a href="<%= coll.link %>" class="tag" title="more"><%= coll.title_en %></a>
+                      <a href="<%= coll.url %>" class="tag" title="more"><%= coll.title_en %></a>
                       <% end %>
 										</li>
 
+                    <!-- TODO - Repository assumes that there is one collection, this code is therefore broken
 										<li>
 											<span>Repository:</span>
-                      <%= @item.repository_en %>
+                      <%#<%= @item.repository_en %>%>
 										</li>
 
 										<li>
 											<span>Restrictions:</span>
-                      <%= @item.restrictions_en %>
+                      <%#<%= @item.restrictions_en %>%>
 										</li>
+                    -->
 
 										<li>
 											<span>Accessed:</span>
@@ -218,28 +220,28 @@
 										<li>
 											<span class="block">Genres</span>
                       <% @item.genres.each do |genre| %>
-                        <a href="<%= genre.link_to_facet %>" class="tag"><%= genre.name_en %></a>
+                        <a href="<%= genre.url_to_facet %>" class="tag"><%= genre.name_en %></a>
                       <% end %>
 										</li>
 
 										<li>
 											<span>People</span>
                       <% @item.people.each do |person| %>
-                        <a href="<%= person.link %>" class="tag"><%= person.name_en %></a>
+                        <a href="<%= person.url %>" class="tag"><%= person.name_en %></a>
                       <% end %>
 										</li>
 
 										<li>
 											<span>Subjects</span>
                       <% @item.subjects.each do |subject| %>
-                        <a href="<%= subject.link_to_facet %>" class="tag"><%= subject.name_en %></a>
+                        <a href="<%= subject.url_to_facet %>" class="tag"><%= subject.name_en %></a>
                       <% end %>
 										</li>
 
 										<li>
 											<span>Places</span>
                       <% @item.places.each do |place| %>
-                        <a href="<%= place.link %>" class="tag"><%= place.name_en %></a>
+                        <a href="<%= place.url %>" class="tag"><%= place.name_en %></a>
                       <% end %>
 										</li>
 									</ul>
