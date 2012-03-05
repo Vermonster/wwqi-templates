@@ -212,41 +212,52 @@
 								</div>
 								</div>
 								<div class="four columns">
-								<div class="item_related">
-									<ul>
-										<li class="title">
-											Related Tags
-										</li>
-										<li>
-											<span class="block">Genres</span>
-                      <% @item.genres.each do |genre| %>
-                        <a href="<%= genre.url_to_facet %>" class="tag"><%= genre.name_en %></a>
-                      <% end %>
-										</li>
+                  <% if @item.genres.present? || @item.people.present? || @item.places.present? || @item.subjects.present? %>
+                    <div class="item_related">
+                      <ul>
+                        <li class="title">
+                          Related Tags
+                        </li>
+                        
+                        <% if @item.genres.present? %>
+                          <li>
+                            <span class="block">Genres</span>
+                            <% @item.genres.each do |genre| %>
+                              <a href="<%= genre.url_to_facet %>" class="tag"><%= genre.name_en %></a>
+                            <% end %>
+                          </li>
+                        <% end %>
 
-										<li>
-											<span>People</span>
-                      <% @item.people.each do |person| %>
-                        <a href="<%= person.url %>" class="tag"><%= person.name_en %></a>
-                      <% end %>
-										</li>
+                        <% if @item.people.present? %>
+                          <li>
+                            <span>People</span>
+                            <% @item.people.each do |person| %>
+                              <a href="<%= person.url %>" class="tag"><%= person.name_en %></a>
+                            <% end %>
+                          </li>
+                        <% end %>
 
-										<li>
-											<span>Subjects</span>
-                      <% @item.subjects.each do |subject| %>
-                        <a href="<%= subject.url_to_facet %>" class="tag"><%= subject.name_en %></a>
-                      <% end %>
-										</li>
+                        <% if @item.subjects.present? %>
+                          <li>
+                            <span>Subjects</span>
+                            <% @item.subjects.each do |subject| %>
+                              <a href="<%= subject.url_to_facet %>" class="tag"><%= subject.name_en %></a>
+                            <% end %>
+                          </li>
+                        <% end %>
 
-										<li>
-											<span>Places</span>
-                      <% @item.places.each do |place| %>
-                        <a href="<%= place.url %>" class="tag"><%= place.name_en %></a>
-                      <% end %>
-										</li>
-									</ul>
-								</div>
-								</div>
+                        <% if @item.places.present? %>
+                          <li>
+                            <span>Places</span>
+                            <% @item.places.each do |place| %>
+                              <a href="<%= place.url %>" class="tag"><%= place.name_en %></a>
+                            <% end %>
+                          </li>
+                        <% end %>
+                      </ul>
+                    </div>
+                  <% end %>
+                </div>
 							</div>
 						</div>
 					</div>
