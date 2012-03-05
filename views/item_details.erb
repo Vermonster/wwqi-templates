@@ -193,11 +193,11 @@
 
 										<li>
 											<span>Accessed:</span>
-                      <%= @item.created_at_en %>
+                      <%= @item.created_at_en.strftime("%B %e, %Y") %>
 										</li>
 										<li>
 											<span>Last Edited:</span>
-                      <%= @item.updated_at_en %>
+                      <%= @item.updated_at_en.strftime("%B %e, %Y") %>
 										</li>
 
 										<li>	
