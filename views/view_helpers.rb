@@ -41,7 +41,24 @@ NOTES
     @item.repository_en = "Majlis Library, Museum and Document Center, Tehran, Iran (MS. 1197-T)"
     @item.restrictions_en = "Use of collection materials for publication purposes must cite Majlis Library, Museum and Document Center (Tehran, Iran) as current repository."
     @item.created_at_en = "14 January 2011"
+    @item.created_at_en.instance_eval do
+      def strftime(*_)
+        self
+      end
+    end
     @item.updated_at_en = "14 September 2011"
+    @item.updated_at_en.instance_eval do
+      def strftime(*_)
+        self
+      end
+    end
+
+    @item.instance_eval do
+      def url(_) 
+         "#"
+      end
+    end
+
     @item.accession_number = "1018A10"
     @item.genres = [
       OpenStruct.new(name_en: "manuscripts & lithographs", url_to_facet: "#")
