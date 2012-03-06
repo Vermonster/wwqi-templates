@@ -19,8 +19,8 @@
     ================================================== -->
 	<meta property="og:title" content="Item Title Here" />
 	<meta property="og:site_name" content="Women's Worlds in Qajar Iran"/>
-	<meta property="og:image" content="LINK_TO_ITEM_THUMB" />
-	<link rel="image_src" href="LINK_TO_ITEM_THUMB" />
+	<meta property="og:image" content="<%= @item.thumbnail %>" />
+	<link rel="image_src" href="<%= @item.thumbnail %>" />
 
 	<!-- CSS 
   	================================================== -->
@@ -62,7 +62,7 @@
 						<li class="my-selections"> 
 							<a href="/archive/my_selections" class="module-link">My Selections <span class="notification">12</span></a>
 						</li>
-						<li><a class="lang" href="http://fa.qajarwomen.org/archive/detail/1527">فارسی</a></li>
+            <li><a class="lang" dir="rtl" href="<%= @item.url(:fa) %>">فارسی</a></li>
 					</ul>
 				</div>
 			</div>
@@ -128,7 +128,7 @@
               -->
 
               <img src="<%= @item.thumbnail %>" alt="<%= @item.title_en_with_date %>">
-              <a href="<%= @item.harvard_link %>" rel="shadowbox[gallery]" title="Anthology of Food, [ca. 1865]" class="redButton inline-block">View This Item</a>
+              <a href="<%= @item.harvard_url %>" rel="shadowbox[gallery]" title="Anthology of Food, [ca. 1865]" class="redButton inline-block">View This Item</a>
             </div>
             <div class="twelve columns">
               <h2><%= @item.title_en_with_date %></h2>
@@ -196,11 +196,11 @@
 
 										<li>
 											<span>Accessed:</span>
-                      <%= @item.created_at_en %>
+                      <%= @item.created_at_en.strftime("%B %e, %Y") %>
 										</li>
 										<li>
 											<span>Last Edited:</span>
-                      <%= @item.updated_at_en %>
+                      <%= @item.updated_at_en.strftime("%B %e, %Y") %>
 										</li>
 
 										<li>	
@@ -215,41 +215,52 @@
 								</div>
 								</div>
 								<div class="four columns">
-								<div class="item_related">
-									<ul>
-										<li class="title">
-											Related Tags
-										</li>
-										<li>
-											<span class="block">Genres</span>
-                      <% @item.genres.each do |genre| %>
-                        <a href="<%= genre.url_to_facet %>" class="tag"><%= genre.name_en %></a>
-                      <% end %>
-										</li>
+                  <% if @item.genres.present? || @item.people.present? || @item.places.present? || @item.subjects.present? %>
+                    <div class="item_related">
+                      <ul>
+                        <li class="title">
+                          Related Tags
+                        </li>
+                        
+                        <% if @item.genres.present? %>
+                          <li>
+                            <span class="block">Genres</span>
+                            <% @item.genres.each do |genre| %>
+                              <a href="<%= genre.url_to_facet %>" class="tag"><%= genre.name_en %></a>
+                            <% end %>
+                          </li>
+                        <% end %>
 
-										<li>
-											<span>People</span>
-                      <% @item.people.each do |person| %>
-                        <a href="<%= person.url %>" class="tag"><%= person.name_en %></a>
-                      <% end %>
-										</li>
+                        <% if @item.people.present? %>
+                          <li>
+                            <span>People</span>
+                            <% @item.people.each do |person| %>
+                              <a href="<%= person.url %>" class="tag"><%= person.name_en %></a>
+                            <% end %>
+                          </li>
+                        <% end %>
 
-										<li>
-											<span>Subjects</span>
-                      <% @item.subjects.each do |subject| %>
-                        <a href="<%= subject.url_to_facet %>" class="tag"><%= subject.name_en %></a>
-                      <% end %>
-										</li>
+                        <% if @item.subjects.present? %>
+                          <li>
+                            <span>Subjects</span>
+                            <% @item.subjects.each do |subject| %>
+                              <a href="<%= subject.url_to_facet %>" class="tag"><%= subject.name_en %></a>
+                            <% end %>
+                          </li>
+                        <% end %>
 
-										<li>
-											<span>Places</span>
-                      <% @item.places.each do |place| %>
-                        <a href="<%= place.url %>" class="tag"><%= place.name_en %></a>
-                      <% end %>
-										</li>
-									</ul>
-								</div>
-								</div>
+                        <% if @item.places.present? %>
+                          <li>
+                            <span>Places</span>
+                            <% @item.places.each do |place| %>
+                              <a href="<%= place.url %>" class="tag"><%= place.name_en %></a>
+                            <% end %>
+                          </li>
+                        <% end %>
+                      </ul>
+                    </div>
+                  <% end %>
+                </div>
 							</div>
 						</div>
 					</div>
@@ -325,52 +336,42 @@
 								</span>
 							</div>
 						</div>
-					</div>
 
-          
-
-
-
-										<!-- end rails template content -->
-
-									</div> <!-- end container -->
-								</div><!-- end content -->
-							</div> <!-- end nonFooter -->
-							<div id="pageFooterWrapper">
-								<div id="pageFooter">
-									<div class="columnWrapperFooter group">
-										<div class="leftWrapperFooter">
-											<ul class="footerNav">
-												<li>
-													<a href="/about">About</a>
-												</li>
-												<li>
-													<a href="/credits">credits</a>
-												</li>
-												<li>
-													<a href="/permissions">permissions</a>
-												</li>
-												<li>
-													<a href="/links">Related Links</a>
-												</li>
-												<li>
-													<a href="/donate">How to Give</a>
-												</li>
-											</ul>
-										</div><!-- closes leftWrapperFooter -->
-										<div class="rightWrapperFooter">
-											<a class="noimage" href="http://www.harvard.edu" target="_blank">
-												<img alt="Harvard Logo" src="/images/harvard.gif"></a>
-												<p>
-													Copyright © 2010  WWQI. All rights reserved.
-												</p>
-											</div><!-- closes rightWrapperFooter -->
-										</div><!-- closes columnWrapperFooter group -->
-									</div>
-								</div>
-
-
-
-
-							</body>
-							</html>
+          <!-- end rails template content -->
+        </div> <!-- end container -->
+      </div><!-- end content -->
+    </div> <!-- end nonFooter -->
+    <div id="pageFooterWrapper">
+      <div id="pageFooter">
+        <div class="columnWrapperFooter group">
+          <div class="leftWrapperFooter">
+            <ul class="footerNav">
+              <li>
+              <a href="/en/about">About</a>
+              </li>
+              <li>
+              <a href="/en/credits">credits</a>
+              </li>
+              <li>
+              <a href="/en/permissions">permissions</a>
+              </li>
+              <li>
+              <a href="/en/links">Related Links</a>
+              </li>
+              <li>
+              <a href="/en/donate">How to Give</a>
+              </li>
+            </ul>
+          </div><!-- closes leftWrapperFooter -->
+          <div class="rightWrapperFooter">
+            <a class="noimage" href="http://www.harvard.edu" target="_blank">
+              <img alt="Harvard Logo" src="/images/harvard.gif"></a>
+            <p>
+            Copyright © 2010  WWQI. All rights reserved.
+            </p>
+          </div><!-- closes rightWrapperFooter -->
+        </div><!-- closes columnWrapperFooter group -->
+      </div>
+    </div>
+  </body>
+</html>
