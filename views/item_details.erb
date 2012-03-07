@@ -19,8 +19,10 @@
     ================================================== -->
 	<meta property="og:title" content="Item Title Here" />
 	<meta property="og:site_name" content="Women's Worlds in Qajar Iran"/>
-	<meta property="og:image" content="<%= @item.thumbnail %>" />
-	<link rel="image_src" href="<%= @item.thumbnail %>" />
+  <% if @item.thumbnail %>
+    <meta property="og:image" content="<%= @item.thumbnail %>" />
+    <link rel="image_src" href="<%= @item.thumbnail %>" />
+  <% end %>
 
 	<!-- CSS 
   	================================================== -->
