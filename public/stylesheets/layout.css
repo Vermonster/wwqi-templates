@@ -96,21 +96,15 @@ h6 { font-size: 1em; }
 	height:140px;
 }
 .header .toolbar{
-	background:#444444;
-  	background-image: -webkit-gradient(linear, left top, left bottom, from(#444444), to(#111111))!important; /* Saf4+, Chrome */
-  	background-image: -webkit-linear-gradient(top, #444444, #111111)!important; /* Chrome 10+, Saf5.1+, iOS 5+ */
-  	background-image:    -moz-linear-gradient(top, #444444, #111111)!important; /* FF3.6 */
-  	background-image:     -ms-linear-gradient(top, #444444, #111111)!important; /* IE10 */
-  	background-image:      -o-linear-gradient(top, #444444, #111111)!important; /* Opera 11.10+ */
-  	background-image:         linear-gradient(top, #444444, #111111)!important;
-	background:url(../images/header.png);
+	background:#000;
+	border-bottom:1px solid #444;
 	height:40px;
 	line-height:40px;
 	position:relative;
 }
 
 .header .toolbar h1{
-    margin:0 0 0 130px;
+    margin:0 0 0 140px;
 	padding:0;
 	color:#fff;
 	height:40px;
@@ -124,8 +118,8 @@ h6 { font-size: 1em; }
 .header .toolbar .branding{
     display:block;
     margin-top:-11px;
-    height:128px;
-	width:111px;
+    height:144px;
+	width:128px;
     background:url(../images/flag.png) 0 0 no-repeat;
     text-indent: -9999px;
 	position:absolute;
@@ -171,20 +165,13 @@ span.notification{
 
 .header .menu{
 	height:55px;
-	background:#4C4A48;
-	border-top:1px solid #555;
-  	background-image: -webkit-gradient(linear, left top, left bottom, from(#ED1A29), to(#4C4A48)); /* Saf4+, Chrome */
-  	background-image: -webkit-linear-gradient(top, #4C4A48, #4C4A48); /* Chrome 10+, Saf5.1+, iOS 5+ */
-  	background-image:    -moz-linear-gradient(top, #4C4A48, #4C4A48); /* FF3.6 */
-  	background-image:     -ms-linear-gradient(top, #4C4A48, #4C4A48); /* IE10 */
-  	background-image:      -o-linear-gradient(top, #4C4A48, #4C4A48); /* Opera 11.10+ */
-  	background-image:         linear-gradient(top, #4C4A48, #4C4A48);
+	background:url(../images/black_paper.png);
 	border-bottom:1px solid #CFCAC4;
 	line-height:55px;
 }
 
 .header .menu ul{
-	margin:0 0 0 110px; padding:0;
+	margin:0 0 0 120px; padding:0;
 }
 
 .header .menu ul li{
@@ -211,20 +198,20 @@ span.notification{
 	float:left;
 	height:45px;
 	padding:10px 25px 0;
-	border-right:1px solid #CFCAC4;
+	border-right:1px solid #444;
 	font-size:16px;
-	font-weight:bold;
-	color:#3A3935;
+	font-weight:normal;
+	color:#fff;
 	margin:0;
 }
 .header .menu ul li a:hover{
-	background:#ADA8A4;
-  	background-image: -webkit-gradient(linear, left top, left bottom, from(#ADA8A4), to(#EBE7DE))!important; /* Saf4+, Chrome */
-  	background-image: -webkit-linear-gradient(top, #ADA8A4, #EBE7DE)!important; /* Chrome 10+, Saf5.1+, iOS 5+ */
-  	background-image:    -moz-linear-gradient(top, #ADA8A4, #EBE7DE)!important; /* FF3.6 */
-  	background-image:     -ms-linear-gradient(top, #ADA8A4, #EBE7DE)!important; /* IE10 */
-  	background-image:      -o-linear-gradient(top, #ADA8A4, #EBE7DE)!important; /* Opera 11.10+ */
-  	background-image:         linear-gradient(top, #ADA8A4, #EBE7DE)!important;
+	background:#C4311D;
+  	background-image: -webkit-gradient(linear, left top, left bottom, from(#DF4C3C), to(#C4311D))!important; /* Saf4+, Chrome */
+  	background-image: -webkit-linear-gradient(top, #DF4C3C, #C4311D)!important; /* Chrome 10+, Saf5.1+, iOS 5+ */
+  	background-image:    -moz-linear-gradient(top, #DF4C3C, #C4311D)!important; /* FF3.6 */
+  	background-image:     -ms-linear-gradient(top, #DF4C3C, #C4311D)!important; /* IE10 */
+  	background-image:      -o-linear-gradient(top, #DF4C3C, #C4311D)!important; /* Opera 11.10+ */
+  	background-image:         linear-gradient(top, #DF4C3C, #C4311D)!important;
 }
 
 .header .menu ul li span{
@@ -233,6 +220,7 @@ span.notification{
 	font-size:11px;
 	font-family:'Times New Roman', serif;
 	font-weight:normal;
+	color:#aaa;
 }
 
 
@@ -571,7 +559,7 @@ img.icon{
 		.header .menu ul li,
 		.header .menu ul li a,
 		.header .menu ul {
-			float:none;
+			float:left;
 			display:block
 		}
 		.header .nav ul{margin:0}
@@ -581,10 +569,11 @@ img.icon{
 			height:auto;
 			padding:10px 15px;
 			border-right:none;
-			border-bottom:1px solid #CFCAC4;	
+			border-bottom:1px solid #444;	
 		}
+		.header .menu ul li span{display:none}
 		.header .menu ul li.sub{
-			width:50%;
+		
 			float:left;
 			padding:0;
 			margin:0;
