@@ -27,21 +27,19 @@
 	<!-- CSS 
   	================================================== -->
 	<!-- Skeleton Stuff -->
-  	<%= stylesheet "base"     %>
+  <%= stylesheet "base"     %>
 	<%= stylesheet "skeleton" %>
-	<%= stylesheet "layout" %>
+	<%= stylesheet "layout"   %>
 	
 	<!-- WWQI -->
-  	<%= stylesheet "style", media: "screen", type: "text/css" %> 
+  <%= stylesheet "style", media: "screen", type: "text/css" %> 
 
 	<!-- TODO: Audio Player (Only include if page has audio?)
   	================================================== -->
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
 	<script type="text/javascript" src="/javascript/jquery.ui.widget.min.js"></script>
 	<script type="text/javascript" src="/javascript/AudioPlayerV1.js"></script>
-
 	<%= stylesheet "audioplayer" %>
-	
 	
 	<!-- Favicons
 	================================================== -->
@@ -73,8 +71,8 @@
 					<ul class="clearfix">
 						<li> <a href="/archive">Browse <span>Explore the archives </span></a></li>
 						<li> <a href="/archive/collections">Collections <span> View our holdings</span></a></li>
-						<li class="sub"><a href="/contact">Contact Us</a></li>
-						<li class="sub"><a href="/faq">FAQ</a></li>
+						<li><a href="/contact">Contact Us<span>Get in touch</span></a></li>
+						<li><a href="/faq">FAQ<span>Have questions? </span></a></li>
 					</ul>
 				</div>
 			</div>
@@ -85,64 +83,81 @@
 			<div class="container clearfix">
 				<!-- rails template content -->
 
-				<div class="archiveBigWrapper clearfix item-details" id="item_details">
+				<div class="item-details clearfix">
+					<div class="item-head clearfix">
 
-          <!-- begin pagination bar -->
-          <div class="paginationBar clearfix">
-         
-          	<!-- AddThis Button BEGIN -->
-			<div class="addthis_toolbox addthis_default_style ">
-			<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
-			<a class="addthis_button_tweet"></a>
-			<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
-			<a class="addthis_counter addthis_pill_style"></a>
-			</div>
-			<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4f4dba8b6c8e0cb1"></script>
-			<!-- AddThis Button END -->
-           
+							<!-- AddThis Button BEGIN -->
+				            <div class="add_this_tools">
+				              	<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+								<a class="addthis_button_preferred_1"></a>
+								<a class="addthis_button_preferred_2"></a>
+								<a class="addthis_button_preferred_3"></a>
+								<a class="addthis_button_preferred_4"></a>
+								<a class="addthis_button_compact"></a>
+								<a class="addthis_counter addthis_bubble_style"></a>
+							</div>
+				              <script type="text/javascript">
+				              var addthis_config =
+				              {
+				                data_track_clickback:true,
+				                ui_language:"en"
+				              };
+				              </script>
+				              <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=qajar"> </script>
+				            </div>
+				            <!-- AddThis Button END -->
+					
+						<div class="item-tools">
+							 <a rel="shadowbox[email];width=450px;height=420px;" title="Email Citation" href="#email-popup" class="email-citation left"><img class="icon" src="/images/ico_email.gif">  Email Citation</a>
+					            <a href="/archive/detail/1527/remember" class="left add-to-selection"><img class="icon" src="/images/ico_add.gif">  Add to My Selections</a>
+						</div>
+						<!-- TODO: Implement subcollections 
 
-            <a rel="shadowbox[email];width=450px;height=420px;" title="Email Citation" href="#email-popup" class="left"><img class="icon" src="../public/images/ico_email.gif">  Email Citation</a>
-            <a href="/archive/detail/1527/remember" class="left"><img class="icon" src="../public/images/ico_add.gif">  Add to My Selections</a>
+			            This depends on some modeling which doesn't exist yet.
 
-            <!-- TODO: Implement subcollections 
+			            <div class="sortnav paginate">
+			              <div class="pagination">
+			                <a href="/archive/browser?genre_filter[]=208">Back To Results</a>
+			                <a href="/archive/detail/1524">Previous Item « </a>
+			                <span class="counts">2 of 26 items</span>
+			                <a href="/archive/detail/1520"> » Next Item</a>
+			              </div>
+			            </div>
 
-            This depends on some modeling which doesn't exist yet.
+			            -->
+					</div>
 
-            <div class="sortnav paginate">
-              <div class="pagination">
-                <a href="/archive/browser?genre_filter[]=208">Back To Results</a>
-                <a href="/archive/detail/1524">Previous Item « </a>
-                <span class="counts">2 of 26 items</span>
-                <a href="/archive/detail/1520"> » Next Item</a>
-              </div>
-            </div>
-
-            -->
-
-          </div>
           <!-- end pagination bar -->
 
-          <div class="item-essentials clearfix">
-            <div class="four columns item-thumbnail">
-
+          <div class="item-essentials container clearfix">
+			<div class="twelve columns">
+            <div class="four columns item-thumbnail alpha">
               <!-- TODO: Implement subcollections 
                 <span class="image-count">24 images</span>
               -->
-
+			 <div class="item-image-frame">
               <img src="<%= @object.thumbnail %>" alt="<%= @object.title_en_with_date %>">
-              <a href="<%= @object.harvard_url %>" rel="shadowbox[gallery]" title="Anthology of Food, [ca. 1865]" class="redButton inline-block">View This Item</a>
+			 </div>
+              
             </div>
-            <div class="twelve columns">
+            <div class="eight columns omega">
               <h2><%= @object.title_en_with_date %></h2>
               <p class="description">
-
                 <%= @object.description_en %>
-				<audio class="AudioPlayerV1" preload="none" data-fallback="YOUR_PATH/AudioPlayerV1.swf">
-				      <source type="audio/mpeg" src="sounds/preview.mp3" />
-				      <source type="audio/ogg" src="sounds/preview.ogg" />
-				</audio>
               </p>
+
+				<audio class="AudioPlayerV1" preload="none" data-fallback="/AudioPlayerV1.swf">
+				      <source type="audio/mpeg" src="/chimes.mp3" />
+				</audio>
             </div>
+			</div>
+			<div class="four columns item-links omega">
+			  
+              <a href="<%= @object.harvard_url %>" rel="shadowbox[gallery]" title="Anthology of Food, [ca. 1865]">View This Item</a>
+<a href="#" title="Anthology of Food, [ca. 1865]">Another Link</a>
+<a href="#" title="Anthology of Food, [ca. 1865]">Another Link</a>
+            </div>
+
           </div>
 						
 						<div id="search_results" class="clearfix">
@@ -339,7 +354,7 @@
 								</span>
 							</div>
 						</div>
-						</div>
+					</div>
           <!-- end rails template content -->
         </div> <!-- end container -->
       </div><!-- end content -->
