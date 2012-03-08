@@ -19,8 +19,10 @@
     ================================================== -->
 	<meta property="og:title" content="Item Title Here" />
 	<meta property="og:site_name" content="Women's Worlds in Qajar Iran"/>
-	<meta property="og:image" content="<%= @item.thumbnail %>" />
-	<link rel="image_src" href="<%= @item.thumbnail %>" />
+  <% if @object.thumbnail %>
+    <meta property="og:image" content="<%= @object.thumbnail %>" />
+    <link rel="image_src" href="<%= @object.thumbnail %>" />
+  <% end %>
 
 	<!-- CSS 
   	================================================== -->
@@ -62,7 +64,7 @@
 						<li class="my-selections"> 
 							<a href="/archive/my_selections" class="module-link">My Selections <span class="notification">12</span></a>
 						</li>
-            <li><a class="lang" dir="rtl" href="<%= @item.url(:fa) %>">فارسی</a></li>
+            <li><a class="lang" dir="rtl" href="<%= @object.url(:fa) %>">فارسی</a></li>
 					</ul>
 				</div>
 			</div>
@@ -127,13 +129,14 @@
                 <span class="image-count">24 images</span>
               -->
 
-              <img src="<%= @item.thumbnail %>" alt="<%= @item.title_en_with_date %>">
-              <a href="<%= @item.harvard_url %>" rel="shadowbox[gallery]" title="Anthology of Food, [ca. 1865]" class="redButton inline-block">View This Item</a>
+              <img src="<%= @object.thumbnail %>" alt="<%= @object.title_en_with_date %>">
+              <a href="<%= @object.harvard_url %>" rel="shadowbox[gallery]" title="Anthology of Food, [ca. 1865]" class="redButton inline-block">View This Item</a>
             </div>
             <div class="twelve columns">
-              <h2><%= @item.title_en_with_date %></h2>
+              <h2><%= @object.title_en_with_date %></h2>
               <p class="description">
-                <%= @item.description_en %>
+
+                <%= @object.description_en %>
 				<audio class="AudioPlayerV1" preload="none" data-fallback="YOUR_PATH/AudioPlayerV1.swf">
 				      <source type="audio/mpeg" src="sounds/preview.mp3" />
 				      <source type="audio/ogg" src="sounds/preview.ogg" />
@@ -151,33 +154,33 @@
 									<h2>Item Details</h2>
 									<ul>
 
-                    <% if @item.has_creator? %>
+                    <% if @object.has_creator? %>
                       <li class="description">
                         <span>Creator:</span>
-                        <%= @item.creator.name_en %>
+                        <%= @object.creator.name_en %>
                       </li>
                     <% end %>
 
 
 										<li class="description">
 											<span>Date:</span>
-                      <%= @item.date.try(:representation_en) || "Undated" %>
+                      <%= @object.date.try(:representation_en) || "Undated" %>
 										</li>
 
 										<li>
 											<span>Notes:</span>
-                      <%= @item.notes_en %>
+                      <%= @object.notes_en %>
 										</li>
 
 
 										<li>
 											<span>Dimensions:</span>
-                      <%= @item.dimensions_en %>
+                      <%= @object.dimensions_en %>
 										</li>
 
 										<li>
 											<span>Collections:</span>
-                      <% @item.collections.each do |coll| %>
+                      <% @object.collections.each do |coll| %>
                       <a href="<%= coll.url %>" class="tag" title="more"><%= coll.title_en %></a>
                       <% end %>
 										</li>
@@ -185,26 +188,26 @@
                     <!-- TODO - Repository assumes that there is one collection, this code is therefore broken
 										<li>
 											<span>Repository:</span>
-                      <%#<%= @item.repository_en %>%>
+                      <%#<%= @object.repository_en %>%>
 										</li>
 
 										<li>
 											<span>Restrictions:</span>
-                      <%#<%= @item.restrictions_en %>%>
+                      <%#<%= @object.restrictions_en %>%>
 										</li>
                     -->
 
 										<li>
 											<span>Accessed:</span>
-                      <%= @item.created_at_en.strftime("%B %e, %Y") %>
+                      <%= @object.created_at_en.strftime("%B %e, %Y") %>
 										</li>
 										<li>
 											<span>Last Edited:</span>
-                      <%= @item.updated_at_en.strftime("%B %e, %Y") %>
+                      <%= @object.updated_at_en.strftime("%B %e, %Y") %>
 										</li>
 
 										<li>	
-                      <span>Record no.:</span> <%= @item.accession_number %>		
+                      <span>Record no.:</span> <%= @object.accession_number %>		
 										</li>
 
 										<li class="clear">
@@ -215,44 +218,44 @@
 								</div>
 								</div>
 								<div class="four columns">
-                  <% if @item.genres.present? || @item.people.present? || @item.places.present? || @item.subjects.present? %>
+                  <% if @object.genres.present? || @object.people.present? || @object.places.present? || @object.subjects.present? %>
                     <div class="item_related">
                       <ul>
                         <li class="title">
                           Related Tags
                         </li>
                         
-                        <% if @item.genres.present? %>
+                        <% if @object.genres.present? %>
                           <li>
                             <span class="block">Genres</span>
-                            <% @item.genres.each do |genre| %>
+                            <% @object.genres.each do |genre| %>
                               <a href="<%= genre.url_to_facet %>" class="tag"><%= genre.name_en %></a>
                             <% end %>
                           </li>
                         <% end %>
 
-                        <% if @item.people.present? %>
+                        <% if @object.people.present? %>
                           <li>
                             <span>People</span>
-                            <% @item.people.each do |person| %>
+                            <% @object.people.each do |person| %>
                               <a href="<%= person.url %>" class="tag"><%= person.name_en %></a>
                             <% end %>
                           </li>
                         <% end %>
 
-                        <% if @item.subjects.present? %>
+                        <% if @object.subjects.present? %>
                           <li>
                             <span>Subjects</span>
-                            <% @item.subjects.each do |subject| %>
+                            <% @object.subjects.each do |subject| %>
                               <a href="<%= subject.url_to_facet %>" class="tag"><%= subject.name_en %></a>
                             <% end %>
                           </li>
                         <% end %>
 
-                        <% if @item.places.present? %>
+                        <% if @object.places.present? %>
                           <li>
                             <span>Places</span>
-                            <% @item.places.each do |place| %>
+                            <% @object.places.each do |place| %>
                               <a href="<%= place.url %>" class="tag"><%= place.name_en %></a>
                             <% end %>
                           </li>
