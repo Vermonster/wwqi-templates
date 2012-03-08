@@ -268,19 +268,6 @@ span.notification{
 	height:173px;
 }
 
-.item-thumbnail a.redButton,
-.item-thumbnail a.blackButton{
-	float:none;
-	margin:0 0 5px 0;
-	width:90%;
-	padding:0 8px;
-	text-shadow:0px 1px 0px #93250f;
-	font-weight:bold;
-	font-size:13px;
-	color:#ffffff;
-	font-weight:bold;
-}
-
 .item-essentials h2{
 	
 	color: #333;
@@ -302,7 +289,6 @@ span.notification{
 	padding-top:10px;
 
 }
-
 
 .item-thumbnail .image-count{
 	display:block;
@@ -338,13 +324,14 @@ span.notification{
 	padding:6px;
 	border-bottom:1px dotted #fff;
 	font-weight:normal;
-	text-shadow:0px 1px #000;
+	
 	font-family:Helvetica, sans-serif;
-	font-size:16px;
+	font-size:14px;
 	background:url(../images/bg-link.png) 95% 50% no-repeat;
 }
 
-.item-links a:last-child{border:none}
+.item-links a:first-child{-moz-border-radius:5px 0 0 0;-webkit-border-radius:5px 0 0 0 ;border-radius:5px 0 0 0 }
+.item-links a:last-child{border:none; -moz-border-radius:0 0 0 5px;-webkit-border-radius:0 0 0 5px;border-radius:0 0 0 5px}
 
 .item-links a:hover{
 	background-color:#000;
@@ -571,13 +558,14 @@ img.icon{
 			float:left;
 			display:block;
 			height:auto;
+			font-size:14px;
 		
 		}
 		.header .nav ul{margin:0}
 		.header .menu ul li a{
 			display:block;
 			float:none;
-			padding:10px 5px;
+			padding:10px 6px;
 		}
 		.header .menu ul li:last-chil a{
 			border:none;
@@ -594,7 +582,22 @@ img.icon{
 			background:transparent!important;
 		}
 		
-		.item-links{
+		#content .item-details{
+			margin-top:10px;
+		}
+		
+		.item-thumbnail .item-image-frame{
+			background-size:90%;
+			height:430px;
+		}
+		.item-thumbnail img{
+			width:70%;
+			height:auto;
+			margin-top:79px;
+		}
+		
+		.item-links,
+		.item-links a{
 			-moz-border-radius:0;
 			-webkit-border-radius:0;
 			border-radius:0;
@@ -606,10 +609,22 @@ img.icon{
 	}
 
 	/* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
-	@media only screen and (min-width: 480px) and (max-width: 767px) {}
+	@media only screen and (min-width: 480px) and (max-width: 767px) {
+	
+	}
 
 	/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
-	@media only screen and (max-width: 479px) {}
+	@media only screen and (max-width: 479px) {
+			.item-thumbnail .item-image-frame{
+				background-size:90%;
+				height:310px;
+			}
+			.item-thumbnail img{
+				width:70%;
+				height:auto;
+				margin-top:59px;
+			}
+	}
 
 
 /* #Font-Face
