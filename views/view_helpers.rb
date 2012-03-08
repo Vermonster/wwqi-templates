@@ -3,30 +3,30 @@ require 'ostruct'
 
 module ViewHelpers
   def load_example_item! 
-    @item = OpenStruct.new
-    @item.thumbnail = "http://d19ob2c2hogwg9.cloudfront.net/thumbs/it_1527.jpg"
-    @item.description_en =<<DESC
+    @object = OpenStruct.new
+    @object.thumbnail = "http://d19ob2c2hogwg9.cloudfront.net/thumbs/it_1527.jpg"
+    @object.description_en =<<DESC
 A satirical anthology of poetry that uses Iranian foods to make fun of
 government elites, both men and women.
 <br/>
 This description is cut off in the interest of not having to fight with UTF-8
 Encodings and serve.
 DESC
-    @item.instance_eval do 
+    @object.instance_eval do 
       def has_creator? 
         true
       end
     end
-    @item.creator = OpenStruct.new
-    @item.creator.name_en = "Mayil Afshar Shaykh al-Shu'ara"
+    @object.creator = OpenStruct.new
+    @object.creator.name_en = "Mayil Afshar Shaykh al-Shu'ara"
 
 
-    @item.date = OpenStruct.new
-    @item.date.representation_en = "[ca. 1873 or 1874]"
+    @object.date = OpenStruct.new
+    @object.date.representation_en = "[ca. 1873 or 1874]"
 
-    @item.title_en_with_date = "Anthology of Food, #{@item.date.representation_en}"
+    @object.title_en_with_date = "Anthology of Food, #{@object.date.representation_en}"
 
-    @item.notes_en =<<NOTES
+    @object.notes_en =<<NOTES
 The date of the text must be after the formation of the consultative body in
 1275 AH or 1289 AH (the text refers to the chairman of the consultative
 assembly) and before 1297 AH (when it was entered in the library).
@@ -36,34 +36,34 @@ On the last page of the text is written: "This book was received from Aqa Muslim
 <br/>
 The stamp of Muhammad Sadiq Tabataba'i appears on the last page of the text.
 NOTES
-    @item.dimensions_en = "17.5cm x 22cm"
-    @item.collections = [OpenStruct.new(url: "#", title_en: "Majlis Library, Museum and Document Center")]
-    @item.repository_en = "Majlis Library, Museum and Document Center, Tehran, Iran (MS. 1197-T)"
-    @item.restrictions_en = "Use of collection materials for publication purposes must cite Majlis Library, Museum and Document Center (Tehran, Iran) as current repository."
-    @item.created_at_en = "14 January 2011"
-    @item.created_at_en.instance_eval do
+    @object.dimensions_en = "17.5cm x 22cm"
+    @object.collections = [OpenStruct.new(url: "#", title_en: "Majlis Library, Museum and Document Center")]
+    @object.repository_en = "Majlis Library, Museum and Document Center, Tehran, Iran (MS. 1197-T)"
+    @object.restrictions_en = "Use of collection materials for publication purposes must cite Majlis Library, Museum and Document Center (Tehran, Iran) as current repository."
+    @object.created_at_en = "14 January 2011"
+    @object.created_at_en.instance_eval do
       def strftime(*_)
         self
       end
     end
-    @item.updated_at_en = "14 September 2011"
-    @item.updated_at_en.instance_eval do
+    @object.updated_at_en = "14 September 2011"
+    @object.updated_at_en.instance_eval do
       def strftime(*_)
         self
       end
     end
 
-    @item.instance_eval do
+    @object.instance_eval do
       def url(_) 
          "#"
       end
     end
 
-    @item.accession_number = "1018A10"
-    @item.genres = [
+    @object.accession_number = "1018A10"
+    @object.genres = [
       OpenStruct.new(name_en: "manuscripts & lithographs", url_to_facet: "#")
     ]
-    @item.people = [
+    @object.people = [
       OpenStruct.new(name_en: "Nasir al-Din Shah", url: "#"),
       OpenStruct.new(name_en: "Ziya' al-Saltanah [I]", url: "#"),
       OpenStruct.new(name_en: "Mayil Afshar Shaykh al-Shu'ara", url: "#"),
@@ -91,7 +91,7 @@ NOTES
       OpenStruct.new(name_en: "Amin al-Saltanah", url: "#")
     ]
 
-    @item.subjects = [
+    @object.subjects = [
       OpenStruct.new(name_en: "food", url_to_facet: "#"),
       OpenStruct.new(name_en: "satire", url_to_facet: "#"),
       OpenStruct.new(name_en: "poetry", url_to_facet: "#"),
@@ -100,7 +100,7 @@ NOTES
       OpenStruct.new(name_en: "courtiers", url_to_facet: "#")
     ]
 
-    @item.places = [
+    @object.places = [
       OpenStruct.new(name_en: "Bushihr", url: "#")
     ]
   end
