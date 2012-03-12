@@ -62,7 +62,7 @@
 						<li class="my-selections"> 
 							<a href="/archive/my_selections" class="module-link">My Selections <span class="notification">12</span></a>
 						</li>
-						<li><a class="lang" dir="rtl" href="<%= @object.url(:fa) %>">فارسی</a></li>
+						<li><a class="lang" dir="rtl" href="<%= @object.url %>">فارسی</a></li>
 					</ul>
 				</div>
 			</div>
@@ -136,14 +136,14 @@ This depends on some modeling which doesn't exist yet.
 		<span class="image-count">24 images</span>
 		-->
 		<div class="item-image-frame">
-			<img src="<%= @object.thumbnail %>" alt="<%= @object.title_en_with_date %>">
+			<img src="<%= @object.thumbnail %>" alt="<%= @object.title_with_date %>">
 		</div>
 
 	</div>
 	<div class="six columns">
-		<h2><%= @object.title_en_with_date %></h2>
+		<h2><%= @object.title_with_date %></h2>
 		<p class="description">
-			<%= @object.description_en %>
+			<%= @object.description %>
 		</p>
 	</div>
 
@@ -197,53 +197,53 @@ This depends on some modeling which doesn't exist yet.
 				<% if @object.has_creator? %>
 				<li class="description">
 					<span>Creator:</span>
-					<%= @object.creator.name_en %>
+					<%= @object.creator.name %>
 				</li>
 				<% end %>
 
 
 				<li class="description">
 					<span>Date:</span>
-					<%= @object.date.try(:representation_en) || "Undated" %>
+					<%= @object.date.try(:representation) || "Undated" %>
 				</li>
 
 				<li>
 					<span>Notes:</span>
-					<%= @object.notes_en %>
+					<%= @object.notes %>
 				</li>
 
 
 				<li>
 					<span>Dimensions:</span>
-					<%= @object.dimensions_en %>
+					<%= @object.dimensions %>
 				</li>
 
 				<li>
 					<span>Collections:</span>
 					<% @object.collections.each do |coll| %>
-					<a href="<%= coll.url %>" class="tag" title="more"><%= coll.title_en %></a>
+            <a href="<%= coll.url %>" class="tag" title="more"><%= coll.name %></a>
 					<% end %>
 				</li>
 
 				<!-- TODO - Repository assumes that there is one collection, this code is therefore broken
 				<li>
 				<span>Repository:</span>
-				<%#<%= @object.repository_en %>%>
+				<%#<%= @object.repository %>%>
 				</li>
 
 <li>
 <span>Restrictions:</span>
-<%#<%= @object.restrictions_en %>%>
+<%#<%= @object.restrictions %>%>
 </li>
 -->
 
 <li>
 	<span>Accessed:</span>
-	<%= @object.created_at_en.strftime("%B %e, %Y") %>
+	<%= @object.created_en.strftime("%B %e, %Y") %>
 </li>
 <li>
 	<span>Last Edited:</span>
-	<%= @object.updated_at_en.strftime("%B %e, %Y") %>
+	<%= @object.updated_en.strftime("%B %e, %Y") %>
 </li>
 
 <li>	
@@ -266,7 +266,7 @@ This depends on some modeling which doesn't exist yet.
 			<li>
 				<span class="title genre">Genres</span>
 				<% @object.genres.each do |genre| %>
-				<a href="<%= genre.url_to_facet %>" class="tag"><%= genre.name_en %></a>
+				<a href="<%= genre.url_to_facet %>" class="tag"><%= genre.name %></a>
 				<% end %>
 			</li>
 			<% end %>
@@ -275,7 +275,7 @@ This depends on some modeling which doesn't exist yet.
 			<li>
 				<span class="title people">People</span>
 				<% @object.people.each do |person| %>
-				<a href="<%= person.url %>" class="tag"><%= person.name_en %></a>
+				<a href="<%= person.url %>" class="tag"><%= person.name %></a>
 				<% end %>
 			</li>
 			<% end %>
@@ -284,7 +284,7 @@ This depends on some modeling which doesn't exist yet.
 			<li>
 				<span class="title subject">Subjects</span>
 				<% @object.subjects.each do |subject| %>
-				<a href="<%= subject.url_to_facet %>" class="tag"><%= subject.name_en %></a>
+				<a href="<%= subject.url_to_facet %>" class="tag"><%= subject.name %></a>
 				<% end %>
 			</li>
 			<% end %>
@@ -293,7 +293,7 @@ This depends on some modeling which doesn't exist yet.
 			<li>
 				<span class="title place">Places</span>
 				<% @object.places.each do |place| %>
-				<a href="<%= place.url %>" class="tag"><%= place.name_en %></a>
+				<a href="<%= place.url %>" class="tag"><%= place.name %></a>
 				<% end %>
 			</li>
 			<% end %>
