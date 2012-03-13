@@ -1,417 +1,203 @@
 <%# encoding: utf-8 %>
 <% load_example_item! unless $GENERATE # prevent loading the example if we're generating the static pages %>
 
-
-
-<!DOCTYPE html>
-<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
-<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
-<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Women's Worlds in Qajar Iran | Item Title</title>
-	<meta name="description" content="The archive contains manuscripts, pictures, sound files relating to the history of women in Qajar Iran." />
-	<meta name="author" content="Women's World in Qajar Iran">
-
-	<!-- facebook metatags 
-	================================================== -->
-	<meta property="og:title" content="Item Title Here" />
-	<meta property="og:site_name" content="Women's Worlds in Qajar Iran"/>
-	<% if @object.thumbnail %>
-	<meta property="og:image" content="<%= @object.thumbnail %>" />
-	<link rel="image_src" href="<%= @object.thumbnail %>" />
-	<% end %>
-
-	<!-- CSS 
-	================================================== -->
-	<!-- Skeleton Stuff -->
-	<%= stylesheet "base"     %>
-	<%= stylesheet "skeleton" %>
-	<%= stylesheet "layout"   %>
-
-	<!-- WWQI -->
-	<%= stylesheet "style", media: "screen", type: "text/css" %> 
-
-	<!-- TODO: Audio Player (Only include if page has audio?)
-	================================================== -->
-	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-	<script type="text/javascript" src="/javascript/jquery.ui.widget.min.js"></script>
-	<script type="text/javascript" src="/javascript/AudioPlayerV1.js"></script>
-	<%= stylesheet "audioplayer" %>
-
-	<!-- Favicons
-	================================================== -->
-	<link rel="shortcut icon" href="images/favicon.ico">
-	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
-
-</head>
-
+<%= render "head_content" %>
 
 <body>
-	<div id="nonFooter">
-		<div class="header">
-			<div class="toolbar">
-				<div class="container clearfix">
-					<a href="/" title="back to home" class="branding box-transition">Women's Worlds in Qajar Iran</a>
-					<h1><strong>Women's Worlds</strong> in Qajar Iran</h1>
-					<ul>
-						<li class="my-selections"> 
-							<a href="/archive/my_selections" class="module-link">My Selections <span class="notification">12</span></a>
-						</li>
-						<li><a class="lang" dir="rtl" href="<%= @object.url %>">فارسی</a></li>
-					</ul>
-				</div>
-			</div>
-			<div class="menu">
-				<div class="container clearfix">
-					<ul class="clearfix">
-						<li> <a href="/archive">Browse <span>Explore the archives </span></a></li>
-						<li> <a href="/archive/collections">Collections <span> View our holdings</span></a></li>
-						<li><a href="/contact">Contact Us<span>Get in touch</span></a></li>
-						<li><a href="/faq">FAQ<span>Have questions? </span></a></li>
-					</ul>
-				</div>
-			</div>
+  <div id="nonFooter">
+    <%= render "body_header" %>
 
-		</div> <!-- end header -->
+    <div id="content">
+      <div class="container clearfix">
+        <!-- rails template content -->
 
-		<div id="content">
-			<div class="container clearfix">
-				<!-- rails template content -->
+        <div class="item-page clearfix">
+          <%= render "item_tools" %>
 
-				<div class="item-page clearfix">
-					<div class="item-head clearfix">
+          <!-- end pagination bar -->
 
-						<!-- AddThis Button BEGIN -->
-						<div class="add_this_tools">
-							<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
-								<a class="addthis_button_preferred_1"></a>
-								<a class="addthis_button_preferred_2"></a>
-								<a class="addthis_button_preferred_3"></a>
-								<a class="addthis_button_preferred_4"></a>
-								<a class="addthis_button_compact"></a>
-								<a class="addthis_counter addthis_bubble_style"></a>
-							</div>
-							<script type="text/javascript">
-							var addthis_config =
-							{
-								data_track_clickback:true,
-								ui_language:"en"
-							};
-							</script>
-							<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=qajar"> </script>
-						</div>
-						<!-- AddThis Button END -->
+          <div class="item-essentials container clearfix">
 
-						<div class="item-tools">
-							<a rel="shadowbox[email];width=450px;height=420px;" title="Email Citation" href="#email-popup" class="email-citation left"><img class="icon" src="/images/ico_email.gif">  Email Citation</a>
-							<a href="/archive/detail/1527/remember" class="left add-to-selection"><img class="icon" src="/images/ico_add.gif">  Add to My Selections</a>
-						</div>
-						<!-- TODO: Implement subcollections 
+            <div class="four columns item-thumbnail">
+              <!-- TODO: Implement subcollections 
+              <span class="image-count">24 images</span>
+              -->
+              <div class="item-image-frame">
+                <img src="<%= @object.thumbnail %>" alt="<%= @object.title_with_date %>">
+              </div>
 
-This depends on some modeling which doesn't exist yet.
+            </div>
 
-<div class="sortnav paginate">
-<div class="pagination">
-<a href="/archive/browser?genre_filter[]=208">Back To Results</a>
-<a href="/archive/detail/1524">Previous Item « </a>
-<span class="counts">2 of 26 items</span>
-<a href="/archive/detail/1520"> » Next Item</a>
-</div>
-</div>
+            <div class="six columns">
+              <h2><%= @object.title_with_date %></h2>
+              <p class="description">
+              <%= @object.description %>
+              </p>
+            </div>
 
--->
-</div>
+            <div class="six columns  omega last-column">
 
-<!-- end pagination bar -->
+              <div class="item-links">
+                <h1> Images </h1>
+                <a href="<%= @object.harvard_url %>" rel="shadowbox[gallery]" title="Anthology of Food, [ca. 1865]">View This Item</a>
+                <!-- TODO - additional links only if item has multiple links -->
+                <a href="#" title="Anthology of Food, [ca. 1865]">Another Link</a>
+                <a href="#" title="Anthology of Food, [ca. 1865]">Yet Another Link</a>
+              </div>
+            </div>
 
-<div class="item-essentials container clearfix">
-
-	<div class="four columns item-thumbnail">
-		<!-- TODO: Implement subcollections 
-		<span class="image-count">24 images</span>
-		-->
-		<div class="item-image-frame">
-			<img src="<%= @object.thumbnail %>" alt="<%= @object.title_with_date %>">
-		</div>
-
-	</div>
-	<div class="six columns">
-		<h2><%= @object.title_with_date %></h2>
-		<p class="description">
-			<%= @object.description %>
-		</p>
-	</div>
-
-	<div class="six columns  omega last-column">
-
-		<div class="item-links">
-			<h1> Images </h1>
-			<a href="<%= @object.harvard_url %>" rel="shadowbox[gallery]" title="Anthology of Food, [ca. 1865]">View This Item</a>
-			<!-- TODO - additional links only if item has multiple links -->
-			<a href="#" title="Anthology of Food, [ca. 1865]">Another Link</a>
-			<a href="#" title="Anthology of Food, [ca. 1865]">Yet Another Link</a>
-		</div>
-	</div>
-
-</div>
+          </div>
 
 
-<div class="item-below-fold">
+          <div class="item-below-fold">
 
-	<div class="ten columns alpha">
-		<!-- TODO - Render next block only when item has associated audio files -->
-		<!-- beginning of audio block -->
-		<div class="item-audio">
-			<h1> Audio </h1>
-			<h5>Hear Mr. Dee talk about his childhood memories</h5>
-			<audio class="AudioPlayerV1" preload="none" data-fallback="/AudioPlayerV1.swf">
-				<source type="audio/mpeg" src="/chimes.mp3" />
-			</audio>
-		</div>
-		<!-- end of audio block -->
-		<!-- TODO - Render next block only when item has a translation -->
-		<!-- beginning of transcript block -->
-		<div class="item-translation">
-			<h1> Translation </h1>
-			<a href="#">View Item Translation</a>
-		</div>
-		<!-- end of transcript block -->
-		<!-- TODO - Render next block only when item has a transcript -->
-		<!-- beginning of transcript block -->
-		<div class="item-transcript">
-			<h1> Transcript </h1>
-			<a href="#">View Item Transcript</a>
-		</div>
-		<!-- end of transcript block -->
-
-		
-		<div class="item-details">
-			<h1>Item Details</h1>
-			<ul>
-
-				<% if @object.has_creator? %>
-				<li class="description">
-					<span>Creator:</span>
-					<%= @object.creator.name %>
-				</li>
-				<% end %>
+            <div class="ten columns alpha">
+              <!-- TODO - Render next block only when item has associated audio files -->
+              <!-- beginning of audio block -->
+              <div class="item-audio">
+                <h1> Audio </h1>
+                <h5>Hear Mr. Dee talk about his childhood memories</h5>
+                <audio class="AudioPlayerV1" preload="none" data-fallback="/AudioPlayerV1.swf">
+                <source type="audio/mpeg" src="/chimes.mp3" />
+                </audio>
+              </div>
+              <!-- end of audio block -->
+              <!-- TODO - Render next block only when item has a translation -->
+              <!-- beginning of transcript block -->
+              <div class="item-translation">
+                <h1> Translation </h1>
+                <a href="#">View Item Translation</a>
+              </div>
+              <!-- end of transcript block -->
+              <!-- TODO - Render next block only when item has a transcript -->
+              <!-- beginning of transcript block -->
+              <div class="item-transcript">
+                <h1> Transcript </h1>
+                <a href="#">View Item Transcript</a>
+              </div>
+              <!-- end of transcript block -->
 
 
-				<li class="description">
-					<span>Date:</span>
-					<%= @object.date.try(:representation) || "Undated" %>
-				</li>
+              <div class="item-details">
+                <h1>Item Details</h1>
+                <ul>
 
-				<li>
-					<span>Notes:</span>
-					<%= @object.notes %>
-				</li>
-
-
-				<li>
-					<span>Dimensions:</span>
-					<%= @object.dimensions %>
-				</li>
-
-				<li>
-					<span>Collections:</span>
-					<% @object.collections.each do |coll| %>
-            <a href="<%= coll.url %>" class="tag" title="more"><%= coll.name %></a>
-					<% end %>
-				</li>
-
-				<!-- TODO - Repository assumes that there is one collection, this code is therefore broken
-				<li>
-				<span>Repository:</span>
-				<%#<%= @object.repository %>%>
-				</li>
-
-<li>
-<span>Restrictions:</span>
-<%#<%= @object.restrictions %>%>
-</li>
--->
-
-<li>
-	<span>Accessed:</span>
-	<%= @object.created.strftime("%B %e, %Y") %>
-</li>
-<li>
-	<span>Last Edited:</span>
-	<%= @object.updated.strftime("%B %e, %Y") %>
-</li>
-
-<li>	
-	<span>Record no.:</span> <%= @object.accession_number %>		
-</li>
-
-<li class="clear">
-	&nbsp;
-</li>
-</ul>
-
-</div>
-</div>
-<div class="six columns omega last-column">
-	
-	<% if @object.genres.present? || @object.people.present? || @object.places.present? || @object.subjects.present? %>
-	<div class="item_related">
-		<ul>
-			<% if @object.genres.present? %>
-			<li>
-				<span class="title genre">Genres</span>
-				<% @object.genres.each do |genre| %>
-				<a href="<%= genre.url_to_facet %>" class="tag"><%= genre.name %></a>
-				<% end %>
-			</li>
-			<% end %>
-
-			<% if @object.people.present? %>
-			<li>
-				<span class="title people">People</span>
-				<% @object.people.each do |person| %>
-				<a href="<%= person.url %>" class="tag"><%= person.name %></a>
-				<% end %>
-			</li>
-			<% end %>
-
-			<% if @object.subjects.present? %>
-			<li>
-				<span class="title subject">Subjects</span>
-				<% @object.subjects.each do |subject| %>
-				<a href="<%= subject.url_to_facet %>" class="tag"><%= subject.name %></a>
-				<% end %>
-			</li>
-			<% end %>
-
-			<% if @object.places.present? %>
-			<li>
-				<span class="title place">Places</span>
-				<% @object.places.each do |place| %>
-				<a href="<%= place.url %>" class="tag"><%= place.name %></a>
-				<% end %>
-			</li>
-			<% end %>
-		</ul>
-	</div>
-	<% end %>
-</div>
-</div>
-</div>
+                  <% if @object.has_creator? %>
+                    <li class="description">
+                    <span>Creator:</span>
+                    <%= @object.creator.name %>
+                    </li>
+                  <% end %>
 
 
-<div id="print-popup" style="display:none;">
-	<div id="print-popup-content" style="padding:20px;color:#fff;">
-		<h2>Print</h2>
-		<p>
-			This item has 24 images. I want to print:
-		</p>
-		<form>
-			<div class="form_row">
-				<input type="radio" name="print_type">
-				Cover Page
-			</div>
-			<div class="form_row">
-				<input type="radio" name="print_type">
-				All Pages
-			</div>
-			<div class="form_row">
-				<input type="radio" name="print_type">
-				from
-				<input type="text" name="print_from" id="print_from">
-				to
-				<input type="text" name="print_from" id="print_to">
-			</div>
-			<div class="form_row">
-				<input type="submit" class="redButton" value="Print">
-			</div>
-		</form>
-	</div>
-</div>
+                  <li class="description">
+                  <span>Date:</span>
+                  <%= @object.date.try(:representation) || "Undated" %>
+                  </li>
 
-<div id="email-confirmation-popup" style="display:none;">
-	<div id="email-popup-content" style="padding:20px;color:#fff;">
-		<h2>Send Citation(s) By Email</h2>
-		<span>
-			<div id="email_confirmation">
-				<p>Your citations were emailed on <br>21 February 2012</p>
-			</div>
-		</span>
-	</div>
-</div>
+                  <li>
+                  <span>Notes:</span>
+                  <%= @object.notes %>
+                  </li>
 
-<div id="email-popup" style="display:none;">
-	<div id="email-popup-content" style="padding:20px;color:#fff;">
-		<h2>Send Citation(s) By Email</h2>
-		<form accept-charset="UTF-8" action="/archive/email" id="email-form" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="alH7ycTNWD9obln5P588gAcVth8+ZJQVLB4aPWSQnLU="></div>
-			<input id="ids" name="ids" type="hidden" value="1527">
-			<div class="form_row">
-				<label for="from">Email From</label> <span class="mandatory">*</span>
-				<br>
-				<input id="from" name="from" type="email" placeholder="example@domain.com" required="" autofocus="">
-			</div>
-			<div class="form_row">
-				<label for="to">Email To</label> <span class="mandatory">*</span>
-				<br>
-				<input id="to" name="to" type="email" placeholder="example@domain.com" required="">
-			</div>
-			<div class="form_row">
-				Note
-				<br>
-				<textarea cols="76" id="note" name="note" rows="5"></textarea>
-			</div>
-			<div class="form_row">
-				<input class="redButton" data-disable-with="Sending email..." name="commit" type="submit" value="Send Email">
-			</div>
-		</form>		<div id="email_confirmation_wrapper">
-			<span>
-				<div id="email_confirmation">
-					<p>* please enter all required fields</p>
-				</div>
-			</span>
-		</div>
-	</div>
-</div>
-<!-- end rails template content -->
-</div> <!-- end container -->
-</div><!-- end content -->
+
+                  <li>
+                  <span>Dimensions:</span>
+                  <%= @object.dimensions %>
+                  </li>
+
+                  <li>
+                  <span>Collections:</span>
+                  <% @object.collections.each do |coll| %>
+                    <a href="<%= coll.url %>" class="tag" title="more"><%= coll.name %></a>
+                  <% end %>
+                  </li>
+
+                  <li>
+                  <span>Repository:</span>
+                  <%= @object.repository %>
+                  </li>
+
+                  <li>
+                  <span>Restrictions:</span>
+                  <%= @object.restrictions %>
+                  </li>
+
+                  <li>
+                  <span>Accessed:</span>
+                  <%= @object.created.strftime("%B %e, %Y") %>
+                  </li>
+                  <li>
+                  <span>Last Edited:</span>
+                  <%= @object.updated.strftime("%B %e, %Y") %>
+                  </li>
+
+                  <li>	
+                  <span>Record no.:</span> <%= @object.accession_number %>		
+                </li>
+
+                <li class="clear">
+                &nbsp;
+                </li>
+              </ul>
+
+            </div>
+          </div>
+          <div class="six columns omega last-column">
+
+            <% if @object.genres.present? || @object.people.present? || @object.places.present? || @object.subjects.present? %>
+              <div class="item_related">
+                <ul>
+                  <% if @object.genres.present? %>
+                    <li>
+                    <span class="title genre">Genres</span>
+                    <% @object.genres.each do |genre| %>
+                      <a href="<%= genre.url_to_facet %>" class="tag"><%= genre.name %></a>
+                    <% end %>
+                    </li>
+                  <% end %>
+
+                  <% if @object.people.present? %>
+                    <li>
+                    <span class="title people">People</span>
+                    <% @object.people.each do |person| %>
+                      <a href="<%= person.url %>" class="tag"><%= person.name %></a>
+                    <% end %>
+                    </li>
+                  <% end %>
+
+                  <% if @object.subjects.present? %>
+                    <li>
+                    <span class="title subject">Subjects</span>
+                    <% @object.subjects.each do |subject| %>
+                      <a href="<%= subject.url_to_facet %>" class="tag"><%= subject.name %></a>
+                    <% end %>
+                    </li>
+                  <% end %>
+
+                  <% if @object.places.present? %>
+                    <li>
+                    <span class="title place">Places</span>
+                    <% @object.places.each do |place| %>
+                      <a href="<%= place.url %>" class="tag"><%= place.name %></a>
+                    <% end %>
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <%= render "print_popup" %>
+
+      <%= render "email_popups" %>
+
+      <!-- end rails template content -->
+    </div> <!-- end container -->
+  </div><!-- end content -->
 </div> <!-- end nonFooter -->
-<div id="pageFooterWrapper">
-	<div id="pageFooter">
-		<div class="columnWrapperFooter group">
-			<div class="leftWrapperFooter">
-				<ul class="footerNav">
-					<li>
-						<a href="/en/about">About</a>
-					</li>
-					<li>
-						<a href="/en/credits">credits</a>
-					</li>
-					<li>
-						<a href="/en/permissions">permissions</a>
-					</li>
-					<li>
-						<a href="/en/links">Related Links</a>
-					</li>
-					<li>
-						<a href="/en/donate">How to Give</a>
-					</li>
-				</ul>
-			</div><!-- closes leftWrapperFooter -->
-			<div class="rightWrapperFooter">
-				<a class="noimage" href="http://www.harvard.edu" target="_blank">
-					<img alt="Harvard Logo" src="/images/harvard.gif"></a>
-					<p>
-						Copyright © 2010  WWQI. All rights reserved.
-					</p>
-				</div><!-- closes rightWrapperFooter -->
-			</div><!-- closes columnWrapperFooter group -->
-		</div>
-	</div>
+<%= render "footer" %>
 </body>
 </html>
