@@ -1,95 +1,48 @@
 <%# encoding: utf-8 %>
-<% load_example_item! unless $GENERATE # prevent loading the example if we're generating the static pages %>
+<% load_example_collection_index! unless $GENERATE # prevent loading the example if we're generating the static pages %>
 
-<%= render :head_content %>
+<%= render "head_content" %>
 
 <body>
   <div id="nonFooter">
-    <%= render :body_header %>
-
+    <%= render "body_header" %>
     <div id="content">
       <div class="container clearfix">
         <!-- rails template content -->
-
         <div class="collections clearfix">
           <div id="search_results">
-            <h2>Named Holdings</h2>
+            <h2><%= @object.title %></h2>
             <p>	
-            Women's Worlds in Qajar Iran includes a growing number of digital collections from private family holdings and participating archival institutions. Click on each holding to see the full details.
+              <%= @object.description %>
             </p>
-            <div class="list clearfix" id="items">
-              <div class="listItem clearfix">
-                <div class="item ">
-                  <a href="#">
-                    <img width="100" alt="A tragic story, [ca. 1918 or 1919]" src="http://library.qajarwomen.org/thumbs/it_1190.jpg">
-                    <span class="items-in-collection">97 items</span>
-                  </a>
-                </div>
-                <div class="description">
-                  <h3><a href="/archive/detail/1190">Sadiqah Dawlatabadi</a></h3>
+            <% @object.content.each do |collection| %>
+              <div class="list clearfix" id="items">
+                <div class="listItem clearfix">
+                  <div class="item ">
+                      <a href="<%= collection.url %>">
+                    <% if collection.thumbnail %>
+                        <img width="100" alt="<%= collection.title %>" src="<%= collection.thumbnail %>">
 
-                  <p class="meta"> ca. 1914-1961 [ca. 1332 AH-1340 SH]</p>
-                  <p>A collection of correspondence, speeches, essays, periodicals, fiction writing, publications and photographs related to the life and career of Sadiqah Dawlatabadi (1882-1961).</p>
-                </div>
-              </div>
-
-              <div class="listItem clearfix">
-                <div class="item ">
-                  <a href="#">
-                    <img width="100" alt="A tragic story, 28 September 1991" src="http://library.qajarwomen.org/thumbs/it_1205.jpg">
-                    <span class="items-in-collection">127 items</span>
-                  </a>
-                </div>
-                <div class="description">
-                  <h3><a href="/archive/detail/1205">A tragic story, 28 September 1991</a></h3>
-
-                  <p class="meta">28 September 1991 (6 Mihr 1370 SH)</p>
-                  <p> <a href="/archive/detail/1205">A partial typed copy of prose work written by Sadiqah Dawlatabadi. </a></p>
+                    <% end %>
+                    <span class="items-in-collection"><%= collection.count %></span>
+                      </a>
+                  </div>
+                  <div class="description">
+                    <h3><a href="<%= collection.url %>"><%= collection.title %></a></h3>
+                    <p class="meta"><%= collection.created %></p>
+                    <p>
+                    <%= collection.description %>
+                    </p>
+                  </div>
                 </div>
               </div>
-
-              <div class="listItem clearfix">
-                <div class="item ">
-                  <a href="#">
-                    <img width="100" alt="A'zam al-Saltanah and family, 1950 or 1951" src="http://library.qajarwomen.org/thumbs/it_1558.jpg">
-                    <span class="items-in-collection">17 items</span>
-                  </a>
-                </div>
-                <div class="description">
-                  <h3><a href="/archive/detail/1558">A'zam al-Saltanah and family, 1950 or 1951</a></h3>
-
-                  <p class="meta">1950 or 1951 (1329 SH)</p>
-                  <p> <a href="/archive/detail/1558">Left to right: (standing) Purandukht (wife of Mu'in al-Din, son of A'zam al-Saltanah), Marzieh Khanum, Rubabah Khanum (servant), Sadiqah Khanum (child of Fatimah Sultan, a servant), Batul Khanum (servant); (seated) Nushin Nosrat Mozaffari (daughter of Mu'in al-Din), A'zam al-Saltanah, Mu'izz al-Din (son of Mu'in al-Din), Akhtar Khanum (sister of A'zam al-Saltanah). </a></p>
-                </div>
-              </div>
-
-              <div class="listItem clearfix">
-                <div class="item oralhistory">	
-                  <a href="#">
-                    <img width="100" alt="A'zam al-Saltanah at Nawruz party with family, ca. 1955 or 1956" src="http://library.qajarwomen.org/thumbs/it_1517.jpg">
-                    <span class="items-in-collection">67 items</span>
-                  </a>
-                </div>
-                <div class="description">
-                  <h3><a href="/archive/detail/1517">A'zam al-Saltanah at Nawruz party with family, ca. 1955 or 1956</a></h3>
-
-                  <p class="meta">ca. 1955 or 1956 (1334 SH)</p>
-                  <p> <a href="/archive/detail/1517">Nawruz celebration with family members. Left to right: Marzieh Khanum, Abu al-Hasan Mirza (son of Shah Saltanah), A'zam al-Saltanah, Manizhah Khanum (wife of Abu al-Hasan Mirza and daughter of Salar al-Dawlah). </a></p>
-                </div>
-              </div>
-
-
-            </div>
+            <% end %>
           </div>
-
-
         </div>
-
-
         <!-- end rails template content -->
       </div> <!-- end container -->
     </div><!-- end content -->
   </div> <!-- end nonFooter -->
-  <%= render :footer %>
+  <%= render "footer" %>
 </body>
 </html>

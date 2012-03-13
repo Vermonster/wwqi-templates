@@ -109,5 +109,31 @@ NOTES
     extra = opts.inject("") { |a,(key, value)| a << "#{key}=\"#{value}\" " } if opts.keys.any?
     %Q|<link rel="stylesheet" href="/stylesheets/#{name}.css" #{extra} />|
   end
+
+  def load_example_collection_index! 
+    @object = OpenStruct.new.tap do |o|
+      o.title = "Named Holdings"
+      o.description = "Women's Worlds in Qajar Iran includes a growing number of digital collections from private family holdings and participating archival institutions. Click on each holding to see the full details."
+      o.content = []
+      10.times.with_object(o.content) { |_, acc| acc << create_collection! }
+    end
+  end
+
+  def create_collection!
+    @coll_number ||= 0
+    @coll_number += 1
+    OpenStruct.new.tap do |o|
+      o.title = "Collection Title #{@coll_number}"
+      o.created = "1786-2010 [1201 AH - 1388 SH]"
+      o.description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud"
+      o.url = "#"
+
+      o.count = rand(125)
+
+      if rand(2) == 1
+        o.thumbnail = "http://d19ob2c2hogwg9.cloudfront.net/collection_thumbs/collection_#{(1..28).to_a.sample}.jpg"
+      end
+    end
+  end
   
 end
