@@ -25,7 +25,6 @@ body{
     margin: 0px;
     padding: 0px;
     border: 0px;
-    color:#ffffff;
     background-image:url(../images/papertexture.png);
     background-position:top center;
     background-repeat:repeat;
@@ -79,7 +78,7 @@ h4, h5, h6 { color:#decc9d }
 h1, h2 { font-weight:200; }
 h3, h4, h5, h6 { font-weight:400; }
 
-h1 { font-size: 22px; line-height: 1em; margin-bottom: 0.5em;color:#decc9d }
+h1 { font-size: 22px; line-height: 1em; margin-bottom: 0.5em;color:#decc9d; color:#666; border-bottom:1px dotted #000; padding-bottom:15px; }
 h2 { font-size: 18px; margin-bottom:0.761em; line-height:1.167em; color:#decc9d; }
 h3 { font-size: 1.50em; line-height: 1.25em; margin-bottom:.5em; color:#decc9d; margin-top:.5em }
 h4 { font-size: 1.167em; line-height: 1.25;color:#990000; }
@@ -215,7 +214,8 @@ span.notification{
 
 /* content
 -------------------------------------------------------------- */
-#content .item-page{
+#content .item-page,
+#content .shaded-panel{
 	background:#fff;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
@@ -227,6 +227,19 @@ span.notification{
 	margin-top:-32px;
 }
 
+
+#content .page-head{
+	background:url(../images/bg-stack.png) 0 0 repeat-x;
+	padding:34px 15px 15px;
+}
+
+#content .dark-list{
+	background:#222;
+}
+
+#content .extra-padding{
+	padding:30px;
+}
 
 
 /* item details
@@ -408,11 +421,6 @@ span.notification{
 	padding:20px;
 }
 
-.item-details h1{
-	color:#666;
-	border-bottom:1px dotted #000;
-	padding-bottom:15px;
-}
 
 .item_related ul li.title{
 	color:#888;
@@ -596,6 +604,112 @@ img.icon{
 }
 
 
+/* Collections List
+-------------------------------------------------------------- */
+ul.collections li{
+	margin:0;
+	padding:0;
+}
+ul.collections li a{
+	display:block;
+	padding:25px 0;
+	border-bottom:1px solid #393939;
+}
+ul.collections li a:hover{
+	background:#333;
+}
+ul.collections li .collection-thumb{
+	float:left;
+	width:150px;
+	margin-left:30px;
+	position:relative;
+}
+ul.collections li .collection-meta{
+	margin-left:200px;
+	margin-right:30px;
+}
+ul.collections li .collection-thumb img{
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	width:100%;
+	z-index:6;
+	position:relative;
+	bottom:auto!important;
+	border: 1px solid rgba(0, 0, 0, 0.25);
+	box-shadow: 0 1px 3px rgba(0,0,0,0.8);
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.8);
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.8);
+}
+ul.collections li .collection-thumb .layer1,
+ul.collections li .collection-thumb .layer2{
+	position:absolute;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	background:#fff;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.8);
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.8);
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.8);
+	padding:0px;
+	top:1px;
+	background: -moz-linear-gradient(center bottom, #ffffff 0%, #fefefe 40%, #fefefe 100%);
+	background: -o-linear-gradient(center bottom, #ffffff 0%, #fefefe 40%, #fefefe 100%);
+	background: -webkit-linear-gradient(bottom, #ffffff 0%, #fefefe 40%, #fefefe 100%);
+	border: 1px solid rgba(34, 25, 25, 0.25);
+}
+ul.collections li .collection-thumb .layer1{
+	z-index:2;
+	right:0px;
+	left:2px;
+	bottom:2px;
+}
+ul.collections li .collection-thumb .layer2{
+	z-index:1;
+	right:2px;
+	left:4px;
+	bottom:-1px;
+}
+
+ul.collections li a span.date{
+	display:block;
+	font-weight:bold;
+	color: #D3515E;
+	 background-image: url(../images/sprites-dots.png);
+	background-position: 0px -211px;
+	background-repeat:no-repeat;
+	padding-left:20px;
+	margin:0;
+}
+
+ul.collections li a h3{
+	color:#fff;
+	font-weight:bold;
+	padding:0;
+	margin:0px 0 10px 0;
+}
+
+ul.collections li a p{
+	color:#9E9E9E;
+}
+ul.collections li a .collection-essentials{
+	margin-right:70px;
+	border-right:1px solid #393939;
+	padding-right:10px;
+}
+ul.collections li a .items-in-collection{
+	float:right;
+	width:50px;
+	font-size:10px;
+	color:#ccc;
+	margin-top:20px;
+	text-align:center;
+}
+ul.collections li a .items-in-collection strong{
+	font-size:29px;
+	display:block;
+	color:#fff;
+}
 
 
 /* #Page Styles
@@ -699,6 +813,28 @@ img.icon{
 		}
 		
 		.item_related{padding:15px}
+		ul.collections li .collection-thumb{
+			float:left;
+			width:70px;
+			margin-left:30px;
+			position:relative;
+		}
+		ul.collections li .collection-meta{
+			margin-left:120px;
+			margin-right:30px;
+		}
+		ul.collections li a .collection-essentials{
+			margin-right:50px;
+		
+		}
+		ul.collections li a .items-in-collection{
+			width:30px;
+		
+		}
+		ul.collections li a .items-in-collection strong{
+			font-size:20px;
+		}
+		
 	}
 
 	/* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
@@ -716,6 +852,20 @@ img.icon{
 				width:70%;
 				height:auto;
 				margin-top:59px;
+			}
+			ul.collections li .collection-thumb{
+				float:none;
+				width:auto;
+				margin-left:30px;
+				margin-right:30px;
+			}
+			ul.collections li .collection-thumb img{
+				width:100%;
+			}
+			ul.collections li .collection-meta{
+				margin-left:30px;
+				margin-right:30px;
+				margin-top:10px;
 			}
 	}
 
