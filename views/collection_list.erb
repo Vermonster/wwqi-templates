@@ -1,0 +1,48 @@
+<%# encoding: utf-8 %>
+<% load_example_collection_index! unless $GENERATE # prevent loading the example if we're generating the static pages %>
+
+<%= render "head_content" %>
+
+<body>
+  <div id="nonFooter">
+    <%= render "body_header" %>
+    <div id="content">
+      <div class="container clearfix">
+        <!-- rails template content -->
+        <div class="collections clearfix">
+          <div id="search_results">
+            <h2><%= @object.title %></h2>
+            <p>	
+              <%= @object.description %>
+            </p>
+            <% @object.content.each do |collection| %>
+              <div class="list clearfix" id="items">
+                <div class="listItem clearfix">
+                  <div class="item ">
+                      <a href="<%= collection.url %>">
+                    <% if collection.thumbnail %>
+                        <img width="100" alt="<%= collection.title %>" src="<%= collection.thumbnail %>">
+
+                    <% end %>
+                    <span class="items-in-collection"><%= collection.count %></span>
+                      </a>
+                  </div>
+                  <div class="description">
+                    <h3><a href="<%= collection.url %>"><%= collection.title %></a></h3>
+                    <p class="meta"><%= collection.created %></p>
+                    <p>
+                    <%= collection.description %>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <!-- end rails template content -->
+      </div> <!-- end container -->
+    </div><!-- end content -->
+  </div> <!-- end nonFooter -->
+  <%= render "footer" %>
+</body>
+</html>
