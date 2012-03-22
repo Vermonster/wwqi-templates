@@ -16,7 +16,7 @@
 	<meta property="og:site_name" content="Women's Worlds in Qajar Iran"/>
 
   <meta property="og:title" content="<%= @object.title %>" />
-  <% if @object.try(:thumbnail) %>
+  <% if @object.respond_to?(:thumbnail) && @object.try(:thumbnail) %>
     <meta property="og:image" content="<%= @object.thumbnail %>" />
     <link rel="image_src" href="<%= @object.thumbnail %>" />
   <% end %>
