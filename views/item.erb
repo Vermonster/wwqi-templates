@@ -118,10 +118,13 @@
                   <%= @object.repository %>
                   </li>
 
-                  <li>
-                  <span>Restrictions:</span>
-                  <%= @object.restrictions %>
-                  </li>
+                  <% if false %>
+                    Temporarily remove this, need to port restrictions from collections down to items.
+                    <li>
+                    <span>Restrictions:</span>
+                    <%= @object.restrictions %>
+                    </li>
+                  <% end %>
 
                   <li>
                   <span>Accessed:</span>
