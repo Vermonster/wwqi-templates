@@ -118,11 +118,11 @@
                   <%= @object.repository %>
                   </li>
 
-                  <% if false %>
-                    Temporarily remove this, need to port restrictions from collections down to items.
+                  <% if @object.collections.size == 1 %>
+                    <% # TODO: consider case of item belonging to multiple collections (currently applies to no items) %>
                     <li>
                     <span>Restrictions:</span>
-                    <%= @object.restrictions %>
+                    <%= @object.collections.first.restrictions %>
                     </li>
                   <% end %>
 
