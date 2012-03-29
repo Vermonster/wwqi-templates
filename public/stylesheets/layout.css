@@ -881,6 +881,11 @@ ul.collections li a .items-in-collection strong{
 			float:left;
 			text-align:center;
 		}
+		.item-essentials.collection-details h2,
+		.item-essentials.collection-details p{
+			padding-left:20px;
+			padding-right:20px;
+		}
 		
 	}
 
